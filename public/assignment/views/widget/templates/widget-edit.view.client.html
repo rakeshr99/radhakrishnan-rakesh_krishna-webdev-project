@@ -1,0 +1,19 @@
+
+<div ng-switch="model.widgetType">
+    <div ng-switch-when = "HEADING">
+        <div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>
+    </div>
+    <div ng-switch-when = "IMAGE" >
+        <div ng-include = "'views/widget/templates/widget-image.view.client.html'"></div>
+    </div>
+    <div ng-switch-when = "HTML">
+        <div ng-include = "'views/widget/templates/widget-html-edit.view.client.html'"></div>
+    </div>
+    <div ng-switch-when = "YOUTUBE">
+        <div ng-include="'views/widget/templates/widget-youtube.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="INPUT">
+        <div ng-include = "'views/widget/templates/widget-text-input-edit.view.client.html'">
+    </div>
+
+</div>
