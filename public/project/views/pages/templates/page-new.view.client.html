@@ -1,0 +1,67 @@
+<div>
+    <nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+            <span
+                    class="glyphicon glyphicon-chevron-left white pull-left glyphicon-chevron-position">
+            </span>
+            </a>
+            <div>
+                <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">New Page</a>
+            </div>
+            <div>
+                <a ng-click="model.createPage(model.page)">
+                <span class="glyphicon glyphicon-ok glyphicon-ok-position white" aria-expanded="true"
+                      aria-hidden="true">
+                </span>
+                </a>
+            </div>
+            <!--</div>-->
+
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-3 visible-lg visible-md split-view-left">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div ng-repeat = "page in model.pages"class="row">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                                <div class="col-xs-10">{{page.name}}</div></a>
+                            <div class="col-xs-2">
+                                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right">
+                        </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9 col-md-9 col-xs-12 rak-split-view-right rak-split-view-right-medium">
+                <label for="name">Name</label>
+                <input name="name"
+                       type="text"
+                       class="form-control"
+                       placeholder="Careers at Zomato"
+                       id="name"
+                       ng-model = "model.page.name"/>
+
+                <label for="title">Title</label>
+                <input name="title"
+                       type="text"
+                       class="form-control"
+                       placeholder="We're hiring"
+                       id="title"
+                       ng-model = "model.page.description"/>
+
+            </div>
+
+            <div ng-include="'views/footerCommon.view.client.html'"></div>
+        </div>
+
+
+    </div><!-- /.container-fluid -->
+</div>

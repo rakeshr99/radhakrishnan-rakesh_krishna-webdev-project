@@ -66,7 +66,7 @@
                 restaurantService
                     .searchRestaurantByYelpId(yelpId)
                     .then(function (response){
-                        model.restaurant = response.jsonBody.businesses[0];
+                        model.restaurant = response.jsonBody;
                     })
             }init();
     }

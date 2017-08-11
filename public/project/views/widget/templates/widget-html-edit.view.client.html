@@ -1,0 +1,52 @@
+<div>
+
+    <nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <span
+                    class="glyphicon glyphicon-chevron-left white pull-left glyphicon-chevron-position">
+            </span>
+            </a>
+            <div>
+                <a class="navbar-brand">Widget Edit</a>
+            </div>
+            <div>
+                <!--<a href="widget-list.view.client.html">-->
+                <span
+                        class="glyphicon glyphicon-ok
+                         glyphicon-ok-position white" aria-expanded="true"
+                        aria-hidden="true"
+                        ng-click = "model.updateWidget(model.widget)">
+                </span>
+                </a>
+            </div>
+            <!--</div>-->
+
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container-fluid">
+
+        <label for="name">Name</label>
+        <input name="name"
+               type="text"
+               class="form-control"
+               placeholder="Chromecast"
+               id="name"
+               readonly
+               ng-model = "model.widget.widgetType"
+               value = "{{model.widgetType.toLowerCase()}}"/>
+
+        <div ng-model="model.widget.text"
+             text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+        </div>
+        <a class="btn btn-default btn-block btn-danger"
+           ng-click = "model.deleteWidget(model.widget._id)"
+           role="button">Delete</a>
+
+        <div ng-include="'views/footerCommon.view.client.html'"></div>
+    </div>
+</div>
