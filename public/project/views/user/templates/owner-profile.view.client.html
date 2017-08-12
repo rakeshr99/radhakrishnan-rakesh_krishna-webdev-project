@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div>
-            <a class="navbar-brand" white href="#!/profile/{{model.userId}}">Profile</a>
+            <a class="navbar-brand" white href="#!/owner-profile/{{model.userId}}">Owner Profile</a>
         </div>
             <div>
             <a ng-click = "model.updateUser(model.user)"><span class="glyphicon glyphicon-ok pull-right
@@ -17,7 +17,14 @@
 </nav>
 <div class="container-fluid">
 
-    <label for="username">Username</label>
+    <button
+            type="button"
+            class="btn btn-default btn-sm pull-right rak-follow-button-padding"
+            ng-click = "model.followMe(model.user)">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Follow Me
+    </button>
+
+    <label for="username" class="rak-username-margin">Username</label>
     <input name="username"
            type="text"
            class="form-control"
@@ -50,9 +57,9 @@
            id="lastName"
            ng-model = "model.user.lastName"/>
 
-    <a class="btn btn-default btn-block btn-primary"
+<!--    <a class="btn btn-default btn-block btn-primary"
        href="#!/user/{{model.user._id}}/website"
-       role="button">Websites</a>
+       role="button">Websites</a>-->
 
     <a class="btn btn-default btn-block btn-danger"
        href="#!/login"

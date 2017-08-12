@@ -11,8 +11,13 @@ userModel.updateUser =updateUser ;
 userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
+userModel.getOwnersList = getOwnersList;
 
 module.exports = userModel;
+
+function getOwnersList(){
+    return userModel.find({roles : "OWNER"});
+}
 
 function removeWebsite(userId, websiteId){
     return userModel

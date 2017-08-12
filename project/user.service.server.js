@@ -14,6 +14,14 @@ app.get("/api/user", findUser);
 app.post("/api/user", registerUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", unregister);
+app.get("/api/owner", getOwnersList);
+
+function getOwnersList(req, res){
+    userModel.getOwnersList()
+        .then(function (owners){
+            res.json(owners);
+        })
+}
 
 function unregister(req, res){
     var userId = req.params.userId;

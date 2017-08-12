@@ -16,10 +16,16 @@
             "registerUser" : registerUser,
             "findUserByUsername" : findUserByusername,
             "updateUser" : updateUser,
-            "unregister" : unregister
+            "unregister" : unregister,
+            "getOwnersList" : getOwnersList
 
         };
         return api;
+
+        function getOwnersList(){
+            var url = "/api/owner";
+            return $http.get(url);
+        }
 
         function unregister(userId){
             var url = "/api/user/" + userId;

@@ -24,9 +24,13 @@
                 templateUrl : "views/user/templates/register.view.client.html",
                 controller : "registerController",
                 controllerAs : "model"})
-            .when("/profile/:userId", {
-                templateUrl : "views/user/templates/profile.view.client.html",
-                controller : "profileController",
+            .when("/customer-profile/:userId", {
+                templateUrl : "views/user/templates/customer-profile.view.client.html",
+                controller : "customerProfileController",
+                controllerAs : "model"})
+            .when("/owner-profile/:userId", {
+                templateUrl : "views/user/templates/owner-profile.view.client.html",
+                controller : "ownerProfileController",
                 controllerAs : "model"})
             .when("/user/:userId/website", {
                 templateUrl : "views/website/templates/website-list.view.client.html",
@@ -77,6 +81,20 @@
                 controller : "flickrImageSearchController",
                 controllerAs : "model"
             })
+            .when("/user/:userId/website/:wid/page/:pageId/widget/:widgetId/search", {
+                templateUrl: "views/widget/templates/widget-flickr-search.view.client.html",
+                controller : "flickrImageSearchController",
+                controllerAs : "model"
+            })
+            .when("/customer-profile/:userId/owners", {
+                templateUrl: "views/user/templates/owner-list.view.client.html",
+                controller : "ownerListController",
+                controllerAs : "model"
+            })
+            .when("/user/:userId/owners/:ownerId", {
+                templateUrl : "views/user/templates/owner-profile.view.client.html",
+                controller : "ownerProfileController",
+                controllerAs : "model"})
 
     }
 })();

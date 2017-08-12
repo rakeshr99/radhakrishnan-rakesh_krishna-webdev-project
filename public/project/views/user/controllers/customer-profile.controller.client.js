@@ -1,15 +1,17 @@
 (function (){
     //this below code makes the module read only
     angular.module("WamApp")
-        .controller("profileController", profileController);
+        .controller("customerProfileController", customerProfileController);
 
-    function profileController($routeParams, userService, $location){
+    function customerProfileController($routeParams, userService, $location){
         var model = this;
         var userId = $routeParams["userId"];
         model.userId = userId;
 
         model.updateUser = updateUser;
         model.unregister = unregister;
+        model.getOwnersList = getOwnersList;
+
         function init() {
             var userId = $routeParams["userId"];
             model.userId = userId;
@@ -21,11 +23,19 @@
         }
         init();
 
+        function getOwnersList(){
+                    $location.url("/customer-profile/"+model.userId+"/owners");
+        }
+
         function updateUser(user){
             userService.updateUser(userId, user)
                 .then(function (response){
                     _user = response.data;
-                    $location.url("/profile/"+userId);
+                    if(_user.roles[0] === "CUSTOMER"){
+                        $location.url("/customer-profile/"+_user._id);
+                    }else{
+                        $location.url("/owner-profile/"+_user._id);
+                    }
                 })
         }
 

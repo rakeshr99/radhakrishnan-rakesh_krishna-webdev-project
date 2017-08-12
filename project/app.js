@@ -9,8 +9,8 @@ var connectionString = 'mongodb://127.0.0.1:27017/webdev_summer2_2017'; // for l
 // above with your own URL given to you by mLab
 
 var mongoose = require("mongoose");
-mongoose.connect(connectionString);
-//mongoose.connect("mongodb://localhost/assignmentDB");
+//mongoose.connect(connectionString);
+mongoose.connect("mongodb://localhost/projectDB");
 mongoose.Promise = require('q').Promise;
 
 require("./user.service.server");

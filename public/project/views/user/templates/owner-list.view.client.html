@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owners List</title>
+</head>
+<body>
+<ul class="list-group">
+<div ng-repeat = "owner in model.ownersList" class="wd-widget">
+    <li class="list-group-item" ng-repeat = "owner in model.ownersList">
+        <a href="#!/user/{{model.userId}}/owners/{{owner._id}}">{{owner.username}}</a>
+</div>
+</ul>
+</body>
+</html>

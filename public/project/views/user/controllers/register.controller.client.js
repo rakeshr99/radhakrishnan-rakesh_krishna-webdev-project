@@ -23,7 +23,11 @@
                 })
                 .then(function (res){
                     _user = res.data;
-                    $location.url("/profile/"+_user._id);
+                    if(_user.roles[0] === "CUSTOMER"){
+                        $location.url("/customer-profile/"+_user._id);
+                    }else{
+                        $location.url("/owner-profile/"+_user._id);
+                    }
                 });
         }
     }

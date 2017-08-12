@@ -24,7 +24,11 @@
                                 model.errorMessage = "Invalid login credentials, the username or password you entered is incorrect";
                             }else{
                                 $rootScope.currentUser = user;
-                                $location.url("profile/"+user._id);
+                                if(user.roles[0] === "CUSTOMER") {
+                                    $location.url("customer-profile/" + user._id);
+                                }else {
+                                    $location.url("owner-profile/" + user._id);
+                                }
                             }
                         })
 

@@ -29,6 +29,21 @@
            id="confirm-password"
            ng-model = "model.user.password2"/>
 
+    <input
+            type="radio"
+            name="customer"
+            id="customer"
+            value="CUSTOMER"
+            ng-model = "model.user.roles"/>
+    <label for="customer">Customer</label>
+    <input
+            type="radio"
+            name="Owner"
+            id="Owner"
+            value="OWNER"
+            ng-model = "model.user.roles"/>
+    <label for="Owner">Owner</label>
+
     <a class="btn btn-default btn-block btn-primary"
        ng-click = "model.registerUser(model.user)"
        role="button">Register</a>
