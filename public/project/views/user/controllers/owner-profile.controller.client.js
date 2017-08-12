@@ -3,15 +3,15 @@
     angular.module("WamApp")
         .controller("ownerProfileController", ownerProfileController);
 
-    function ownerProfileController($routeParams, userService, $location){
+    function ownerProfileController($routeParams, userService, $location, loggedUser){
         var model = this;
-        var userId = $routeParams["userId"];
+        var userId = loggedUser._id;/*$routeParams["userId"];*/
         model.userId = userId;
 
         model.updateUser = updateUser;
         model.unregister = unregister;
         function init() {
-            var userId = $routeParams["userId"];
+            var userId = loggedUser._id;
             model.userId = userId;
             userService.findUserById(userId)
                     .then(function (response){

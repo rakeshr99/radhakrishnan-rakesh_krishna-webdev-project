@@ -3,9 +3,10 @@
     angular.module("WamApp")
         .controller("customerProfileController", customerProfileController);
 
-    function customerProfileController($routeParams, userService, $location){
+    function customerProfileController($routeParams, userService, $location, loggedUser){
+        console.log(loggedUser);
         var model = this;
-        var userId = $routeParams["userId"];
+        var userId = loggedUser._id;/*$routeParams["userId"];*/
         model.userId = userId;
 
         model.updateUser = updateUser;
@@ -13,7 +14,7 @@
         model.getOwnersList = getOwnersList;
 
         function init() {
-            var userId = $routeParams["userId"];
+            var userId = loggedUser._id;/*$routeParams["userId"]*/;
             model.userId = userId;
             userService.findUserById(userId)
                     .then(function (response){

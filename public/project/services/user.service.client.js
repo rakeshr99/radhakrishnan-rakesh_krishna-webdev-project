@@ -11,16 +11,24 @@
             {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
         ];*/
         var api = {
-            "findUserByNameAndPassword" : findUserByNameAndPassword,
+            "findUserByNameAndPassword" : login,
             "findUserById" : findUserById,
             "registerUser" : registerUser,
             "findUserByUsername" : findUserByusername,
             "updateUser" : updateUser,
             "unregister" : unregister,
-            "getOwnersList" : getOwnersList
+            "getOwnersList" : getOwnersList,
+            "checkLogin" : checkLogin
 
         };
         return api;
+
+        function checkLogin(){
+            return $http.get("/api/checkLogin")
+                .then(function (response){
+                    return response.data;
+                })
+        }
 
         function getOwnersList(){
             var url = "/api/owner";
@@ -55,10 +63,10 @@
             return $http.get("/api/user/" + userId);
         }
 
-        function findUserByNameAndPassword(username, password){
+        function login(username, password){
 
-            var url = "/api/user?username="+username+"&password="+ password;
-            return $http.get(url);
+            var url = "/api/login";
+            return $http.post(url, {username :username, password: password});
         }
     }
 })();

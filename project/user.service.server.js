@@ -1,5 +1,11 @@
 var app = require("../express");
 var userModel = require(".//models/user/user.model.server");
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(localStrategy));
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
+
 var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder", isAdmin: true  },
     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -15,6 +21,41 @@ app.post("/api/user", registerUser);
 app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", unregister);
 app.get("/api/owner", getOwnersList);
+app.post("/api/login", passport.authenticate('local'), login);
+app.get("/api/checkLogin",checkLogin);
+
+function checkLogin(req, res){
+    res.send(req.isAuthenticated() ? req.user : '0');
+}
+
+function localStrategy(username, password, done){
+    userModel
+        .findUserByCredentials(username, password)
+        .then(function (user){
+                if (!user)
+                {
+                    return done(null, false, {
+                        error : 'Incorrect username or password.'
+                    });
+                }
+                return done(null, user);
+            },
+            function(err) {
+                if (err)
+                {
+                    return done(err);
+                }
+            });
+
+/*            else{
+                res.send("0");
+            }*/
+}
+
+function login(req, res){
+    var user = req.user;
+    res.json(user);
+}
 
 function getOwnersList(req, res){
     userModel.getOwnersList()
@@ -35,14 +76,6 @@ function unregister(req, res){
                 res.send(404);
             }
         });
-
-/*    var user = users.find(function (user){
-        if(user._id === userId){
-            var index = users.indexOf(user);
-            users.splice(index, 1);
-            res.send("true");
-        }
-    });*/
 }
 
 function updateUser(req, res){
@@ -58,14 +91,6 @@ function updateUser(req, res){
                 res.send(404);
             }
         });
-
-/*    for(var u in users){
-        if(users[u]._id === userId){
-            users[u] = user;
-            res.send(users[u]);
-            return;
-        }
-    }res.send(404);*/
 }
 
 function registerUser(req, res){
@@ -79,14 +104,12 @@ function registerUser(req, res){
         function (err){
             res.send(err);
         });
-/*    user._id = (new Date()).getTime() + "";
-    users.push(user);
-    res.send(user);*/
 }
 
 function findUser(req, res){
-    var username = req.query.username;
-    var password = req.query.password;
+    var body = req.body;
+    var username = body.username;
+    var password = body.password;
 
     if(username && password) {
 
@@ -100,13 +123,6 @@ function findUser(req, res){
                     res.send("0");
                 }
             });
-/*        for (u in users) {
-            var _user = users[u];
-            if (_user.username === username && _user.password === password) {
-                res.send(_user);
-                return;
-            }
-        }*/
     }else if(username) {
         userModel
             .findUserByUsername(username)
@@ -118,12 +134,6 @@ function findUser(req, res){
                     res.send("0");
                 }
             });
-/*        for (var u in users) {
-            if (users[u].username === username) {
-                res.send(users[u]);
-                return;
-            }
-        }*/
     }
     }
 
@@ -138,9 +148,21 @@ function getUserById(req, res){
         .then(function (user){
             res.json(user);
         })
-/*    for(var u in users){
-        if(users[u]._id  === req.params.userId){
-            res.send(users[u]);
-        }
-    }*/
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
 }

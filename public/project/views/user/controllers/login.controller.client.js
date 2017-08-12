@@ -20,15 +20,15 @@
                     userService.findUserByNameAndPassword(user.username, user.password)
                         .then(function (response){
                             user = response.data;
-                            if(user === "0"){
-                                model.errorMessage = "Invalid login credentials, the username or password you entered is incorrect";
-                            }else{
+                            if(user){
                                 $rootScope.currentUser = user;
                                 if(user.roles[0] === "CUSTOMER") {
-                                    $location.url("customer-profile/" + user._id);
+                                    $location.url("customer-profile");
                                 }else {
-                                    $location.url("owner-profile/" + user._id);
+                                    $location.url("owner-profile");
                                 }
+                            }else{
+                                model.errorMessage = "Invalid login credentials, the username or password you entered is incorrect";
                             }
                         })
 
