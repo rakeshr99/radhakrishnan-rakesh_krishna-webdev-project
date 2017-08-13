@@ -58,6 +58,11 @@
            id="lastName"
            ng-model = "model.user.lastName"/>
 
+    <label>Customers following you</label>
+    <div ng-repeat="customer in model.followed">
+        <span>{{customer}}   </span>
+    </div>
+
 <!--    <a class="btn btn-default btn-block btn-primary"
        href="#!/user/{{model.user._id}}/website"
        role="button">Websites</a>-->

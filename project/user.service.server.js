@@ -24,7 +24,26 @@ app.get("/api/owner", getOwnersList);
 app.post("/api/login", passport.authenticate('local'), login);
 app.post("/api/logout", logout);
 app.get("/api/checkLogin",checkLogin);
+app.post("/api/owner/followMe", followMe);
 
+function followMe(req, res){
+    var user = req.user;
+    var body = req.body;
+    var userId = body.userId;
+    var ownerName = body.ownerName;
+    var owner = {};
+
+    userModel
+        .updateFollowing(userId, ownerName)
+        .then(function (response){
+            userModel
+                .updateFollowed(ownerName, user.username)
+                .then(function (response){
+                    res.sendStatus(200);
+                })
+            //res.sendStatus(200);
+        })
+}
 function logout(req, res){
     req.logout();
     res.sendStatus(200);

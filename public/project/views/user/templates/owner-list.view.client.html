@@ -8,7 +8,15 @@
 <ul class="list-group">
 <div ng-repeat = "owner in model.ownersList" class="wd-widget">
     <li class="list-group-item" ng-repeat = "owner in model.ownersList">
-        <a href="#!/owner">{{owner.username}}</a>
+        <div>
+            <a href="#!/owner">{{owner.username}}</a>
+            <button
+                    type="button"
+                    class="btn btn-default btn-sm pull-right rak-follow-button-padding"
+                    ng-click = "model.followMe(owner.username)">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Follow Me
+            </button>
+        </div>
 </div>
 </ul>
 </body>

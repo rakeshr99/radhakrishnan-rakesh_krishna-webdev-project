@@ -10,7 +10,9 @@ var userSchema = mongoose.Schema({
     phone : String,
     websites : [{type : mongoose.Schema.Types.ObjectId, ref : "WebsiteModel"}],
     dateCreated : {type :Date, default : Date.now},
-    roles: [{type: String, enum:["ADMIN", "CUSTOMER", "OWNER"]}]
+    roles: [{type: String, enum:["ADMIN", "CUSTOMER", "OWNER"]}],
+    following: [{type :String}],
+    followed : [{type : String}]
 }, {collection : "user"});
 
 module.exports = userSchema;

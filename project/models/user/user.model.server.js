@@ -12,9 +12,26 @@ userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
 userModel.getOwnersList = getOwnersList;
+userModel.updateFollowing = updateFollowing;
+userModel.updateFollowed = updateFollowed;
 
 module.exports = userModel;
 
+function updateFollowing(userId, ownerName){
+    return userModel.findUserById(userId)
+        .then(function (user){
+            user.following.push(ownerName);
+            user.save();
+        })
+}
+
+function updateFollowed(ownerName, username){
+    return userModel.findUserByUsername(ownerName)
+        .then(function (user){
+            user.followed.push(username);
+            user.save();
+        })
+}
 function getOwnersList(){
     return userModel.find({roles : "OWNER"});
 }

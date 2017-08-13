@@ -35,14 +35,14 @@
 
         }
 
-        function followMe(userId){
-            var user = {};
-            userService.findUserById(userId)
+        function followMe(ownerName, userId){
+/*            var owner = {};
+            userService.findUserByUsername(ownerName)
                 .then(function (response){
-                    user = response.data;
-                });
+                    owner = response.data;
+                });*/
             var url = "/api/owner/followMe";
-            return $http.post(url);
+            return  $http.post(url, {userId :userId, ownerName : ownerName});
         }
 
         function checkLogin(){

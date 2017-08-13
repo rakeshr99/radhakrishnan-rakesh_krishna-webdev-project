@@ -20,6 +20,7 @@
             userService.findUserById(userId)
                     .then(function (response){
                         model.user = response.data;
+                        model.followed = model.user.followed;
                 })
 
         }
