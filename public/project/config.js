@@ -95,15 +95,22 @@
                 controller : "flickrImageSearchController",
                 controllerAs : "model"
             })
-            .when("/customer-profile/:userId/owners", {
+            .when("/owners", {
                 templateUrl: "views/user/templates/owner-list.view.client.html",
                 controller : "ownerListController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
             })
-            .when("/user/:userId/owners/:ownerId", {
+            .when("/owner", {
                 templateUrl : "views/user/templates/owner-profile.view.client.html",
                 controller : "ownerProfileController",
-                controllerAs : "model"})
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
     }
 
     function checkLogin(userService, $q, $location){

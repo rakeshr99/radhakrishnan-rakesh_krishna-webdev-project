@@ -10,9 +10,13 @@
 
         model.updateUser = updateUser;
         model.unregister = unregister;
+        model.followMe = followMe;
+        model.logout = logout;
+
         function init() {
             var userId = loggedUser._id;
             model.userId = userId;
+            model.role = loggedUser.roles[0];
             userService.findUserById(userId)
                     .then(function (response){
                         model.user = response.data;
@@ -20,6 +24,22 @@
 
         }
         init();
+
+        function logout(){
+            userService
+                .logout()
+                .then(function (){
+                    $location.url('/login')
+                })
+        }
+
+        function followMe(){
+            userService
+                .followMe(model.userId)
+                .then(function (response){
+                    response.send(200);
+                })
+        }
 
         function updateUser(user){
             userService.updateUser(userId, user)

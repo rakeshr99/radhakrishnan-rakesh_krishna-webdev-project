@@ -22,7 +22,13 @@ app.put("/api/user/:userId", updateUser);
 app.delete("/api/user/:userId", unregister);
 app.get("/api/owner", getOwnersList);
 app.post("/api/login", passport.authenticate('local'), login);
+app.post("/api/logout", logout);
 app.get("/api/checkLogin",checkLogin);
+
+function logout(req, res){
+    req.logout();
+    res.sendStatus(200);
+}
 
 function checkLogin(req, res){
     res.send(req.isAuthenticated() ? req.user : '0');
@@ -99,7 +105,9 @@ function registerUser(req, res){
     userModel
         .createUser(user)
         .then(function (user){
-            res.json(user);
+            req.login(user, function (status){
+                res.json(user);
+            })
         },
         function (err){
             res.send(err);
@@ -134,6 +142,8 @@ function findUser(req, res){
                     res.send("0");
                 }
             });
+    }else{
+        res.send("0");
     }
     }
 

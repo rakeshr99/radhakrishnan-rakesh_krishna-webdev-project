@@ -18,10 +18,32 @@
             "updateUser" : updateUser,
             "unregister" : unregister,
             "getOwnersList" : getOwnersList,
-            "checkLogin" : checkLogin
+            "checkLogin" : checkLogin,
+            "followMe" : followMe,
+            "logout" : logout
 
         };
         return api;
+
+        function logout(){
+            var url = "/api/logout";
+            return $http
+                .post(url)
+                .then(function (response){
+                    return response.data;
+                })
+
+        }
+
+        function followMe(userId){
+            var user = {};
+            userService.findUserById(userId)
+                .then(function (response){
+                    user = response.data;
+                });
+            var url = "/api/owner/followMe";
+            return $http.post(url);
+        }
 
         function checkLogin(){
             return $http.get("/api/checkLogin")

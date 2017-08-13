@@ -11,24 +11,26 @@
 
         }init();
 
-        function registerUser(user){
-            userService.findUserByUsername(user.username)
-                .then(function(response){
-                    var _user = response.data;
-                    if(_user === "0"){
-                        return userService.registerUser(user);
-                    }else{
-                        model.error = "User already exists";
-                    }
-                })
-                .then(function (res){
-                    _user = res.data;
-                    if(_user.roles[0] === "CUSTOMER"){
-                        $location.url("/customer-profile/"+_user._id);
-                    }else{
-                        $location.url("/owner-profile/"+_user._id);
-                    }
-                });
+        function registerUser(user) {
+            if (!(user == null)) {
+                userService.findUserByUsername(user.username)
+                    .then(function (response) {
+                        var _user = response.data;
+                        if (_user === "0") {
+                            return userService.registerUser(user);
+                        } else {
+                            model.error = "User already exists";
+                        }
+                    })
+                    .then(function (res) {
+                        _user = res.data;
+                        if (_user.roles[0] === "CUSTOMER") {
+                            $location.url("/customer-profile");
+                        } else {
+                            $location.url("/owner-profile");
+                        }
+                    });
+            }
         }
     }
 })();

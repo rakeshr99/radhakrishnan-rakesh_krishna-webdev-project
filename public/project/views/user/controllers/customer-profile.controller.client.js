@@ -12,6 +12,7 @@
         model.updateUser = updateUser;
         model.unregister = unregister;
         model.getOwnersList = getOwnersList;
+        model.logout = logout;
 
         function init() {
             var userId = loggedUser._id;/*$routeParams["userId"]*/;
@@ -24,8 +25,16 @@
         }
         init();
 
+        function logout(){
+            userService
+                .logout()
+                .then(function (){
+                    $location.url('/login')
+                })
+        }
+
         function getOwnersList(){
-                    $location.url("/customer-profile/"+model.userId+"/owners");
+                    $location.url("/owners");
         }
 
         function updateUser(user){

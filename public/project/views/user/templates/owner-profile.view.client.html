@@ -20,7 +20,8 @@
     <button
             type="button"
             class="btn btn-default btn-sm pull-right rak-follow-button-padding"
-            ng-click = "model.followMe(model.user)">
+            ng-click = "model.followMe()"
+            ng-show = "model.role === 'CUSTOMER'">
         <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Follow Me
     </button>
 
@@ -62,7 +63,7 @@
        role="button">Websites</a>-->
 
     <a class="btn btn-default btn-block btn-danger"
-       href="#!/login"
+       ng-click="model.logout()"
        role="button">Logout</a>
 
     <a class="btn btn-default btn-block btn-danger"
