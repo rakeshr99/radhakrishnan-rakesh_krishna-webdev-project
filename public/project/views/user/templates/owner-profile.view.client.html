@@ -1,6 +1,12 @@
 <div>
 <nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
     <div class="container-fluid">
+        <a href="#!/">
+            <span
+                    class="glyphicon glyphicon-chevron-left white pull-left glyphicon-chevron-position">
+
+            </span>
+        </a>
         <!-- Brand and toggle get grouped for better mobile display -->
         <div>
             <a class="navbar-brand" white href="#!/owner-profile/{{model.userId}}">Owner Profile</a>
@@ -62,6 +68,14 @@
     <div ng-repeat="customer in model.followed">
         <span>{{customer}}   </span>
     </div>
+
+    <label>My Restaurant</label>
+    <ul class="list-group">
+        <div ng-repeat = "restaurant in model.user.restaurants" class="wd-widget">
+            <li class="list-group-item" ng-repeat = "restaurant in model.user.restaurants">
+                <a href="#!/restaurant-details/{{restaurant._id}}">{{restaurant.name}}</a>
+        </div>
+    </ul>
 
 <!--    <a class="btn btn-default btn-block btn-primary"
        href="#!/user/{{model.user._id}}/website"

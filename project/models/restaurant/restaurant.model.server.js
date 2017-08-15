@@ -20,7 +20,10 @@ function getAllRestaurants(){
 }
 
 function findAllRestaurantsForUser(userId){
-    return restaurantModel.find({_user : userId});
+    return restaurantModel
+        .find({_user : userId})
+        .populate('user', 'username')
+        .exec();
 }
 
 function findRestaurantById(restaurantId){
@@ -35,6 +38,10 @@ function createRestaurant(userId, restaurant){
         .then(function (restaurantDoc){
             restauranttmp = restaurantDoc;
             return userModel.addRestaurant(userId, restaurantDoc._id)
+        }, function(error){
+            return res.json({error:error.message});
+        }).catch(function () {
+            console.log("Promise Rejected");
         })
         .then(function (userDoc) {
             return restauranttmp;

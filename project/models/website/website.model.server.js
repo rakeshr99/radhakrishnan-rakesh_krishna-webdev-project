@@ -32,7 +32,10 @@ function addPage(websiteId,pageId){
 }
 
 function findAllWebsitesForUser(userId){
-    return websiteModel.find({_user : userId});
+    return websiteModel
+        .find({_user : userId})
+        .populate('user', 'username')
+        .exec();
 }
 
 function findWebsiteById(websiteId){

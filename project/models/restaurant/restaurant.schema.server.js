@@ -8,7 +8,7 @@ var restaurantSchema = mongoose.Schema({
     phone : String,
     display_phone : String,
     review_count : Number,
-    categories : [{type: String}],
+    categories : [{alias: String, title: String}],
     rating : Number,
     location : [{
         address1 : String,

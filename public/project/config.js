@@ -19,11 +19,11 @@
                 resolve: {
                     loggedUser : checkLogin
                 }})
-            .when("/restaurant/:yelpId", {
+/*            .when("/restaurant/:yelpId", {
                 templateUrl: "views/restaurant/templates/restaurant-details.view.client.html",
-                controller: "detailsController",
+                controller: "restaurantDetailsController",
                 controllerAs: "model"
-            })
+            })*/
             .when("/login", {
                 templateUrl:"views/user/templates/login.view.client.html",
                 controller : "loginController",

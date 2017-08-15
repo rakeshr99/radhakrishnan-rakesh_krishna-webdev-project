@@ -9,6 +9,15 @@
         this.createRestaurant = createRestaurant;
         this.getAllRestaurants = getAllRestaurants;
         this.searchRestaurantById =searchRestaurantById;
+        this.deleteRestaurant = deleteRestaurant;
+
+        function deleteRestaurant(userId, restaurantId){
+            var url = "/api/delete-restaurant?userId="+userId+"&restaurantId="+restaurantId;
+            return $http.delete(url)
+                .then(function (response){
+                    return response.data;
+                })
+        }
 
         function searchRestaurantById(yelpId){
             var url = "/api/yelp/localSearch/"+yelpId;

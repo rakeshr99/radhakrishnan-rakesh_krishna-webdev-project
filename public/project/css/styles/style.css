@@ -151,3 +151,20 @@ footer {
     font-weight: bold;
     font-size: 20px;
 }
+
+.rak-details-page-button {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width:120px;
+    height: 40px;
+}
+
+.rak-heart-color{
+    color:red;
+}
+
+.rak-remove-color{
+    color:red;
+}

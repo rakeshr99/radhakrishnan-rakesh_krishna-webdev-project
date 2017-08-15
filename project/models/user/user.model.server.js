@@ -78,7 +78,9 @@ function createUser(user){
 }
 
 function findUserById(userId){
-    return userModel.findById(userId);
+    return userModel
+        .findById(userId)
+        .populate("restaurants", "name");
 }
 
 function findAllUser(){

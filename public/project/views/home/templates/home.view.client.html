@@ -22,9 +22,9 @@
                     <li class="active"><a href="#section_welcome">Welcome</a></li>
                     <li><a href="#section_discover">Discover</a></li>
                     <li><a href="#section_menu">Menu</a></li>
-                    <li><a href="#section_reservation">Reservation</a></li>
-                    <li><a href="#section_events">Events</a></li>
-                    <li><a href="#section_gallery">Gallery</a></li>
+                    <li><a href="#!/customer-profile" ng-hide="model.ownerProfileButton()">Customer Profile</a></li>
+                    <li><a href="#!/owner-profile" ng-hide="model.customerProfileButton()">Owner profile</a></li>
+                    <li><a href="" ng-click="model.logout()">Logout</a></li>
                     <li><a ng-show="!currentUser" href="#!/login">Login</a></li>
 
                 </ul>

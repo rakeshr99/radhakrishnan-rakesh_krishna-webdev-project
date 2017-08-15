@@ -10,6 +10,25 @@ app.get("/api/yelp/:yelpId", searchRestaurantByYelpId);
 app.post("/api/new-restaurant", createRestaurant);
 app.get("/api/list-restaurant", getAllRestaurants);
 app.get("/api/yelp/localSearch/:yelpId", searchRestaurantById);
+app.delete("/api/delete-restaurant", deleteRestaurant);
+
+
+function deleteRestaurant(req, res){
+    var userId = req.query.userId;
+    var restaurantId = req.query.restaurantId;
+
+    restaurantModel
+        .deleteRestaurant(userId, restaurantId)
+        .then(function (status){
+            if(status){
+                res.json(status);
+                return;
+            }else{
+                res.send(404);
+                return;
+            }
+        });
+}
 
 function searchRestaurantById(req, res){
     var restaurantId = req.params.yelpId;

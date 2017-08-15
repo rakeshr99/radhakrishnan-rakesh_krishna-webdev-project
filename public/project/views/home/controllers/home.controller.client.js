@@ -4,27 +4,33 @@
         .controller("homeController", homeController);
 
 
-    function homeController(restaurantService, $location){
+    function homeController(restaurantService, $location, loggedUser, userService){
         var model =this;
 
             model.searchRestaurantByTitle = searchRestaurantByTitle;
+            model.customerProfileButton = customerProfileButton;
+            model.ownerProfileButton = ownerProfileButton;
+            model.logout = logout;
 
         function init(){
-/*            var x = document.getElementById("demo");
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-
-            function showPosition(position) {
-                x.innerHTML = "Latitude: " + position.coords.latitude +
-                    "<br>Longitude: " + position.coords.longitude;
-                model.latitude = position.coords.latitude;
-                model.longitude = position.coords.longitude
-            }*/
         }init();
+
+        function customerProfileButton(){
+            if(loggedUser.roles[0] == "CUSTOMER"){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function ownerProfileButton(){
+            if(loggedUser.roles[0] == "OWNER"){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
         function searchRestaurantByTitle(restaurantId){
             //alert(title);
@@ -35,6 +41,14 @@
                 })*/
             $location.url("/list-restaurant/"+restaurantId);
 
+        }
+
+        function logout(){
+            userService
+                .logout()
+                .then(function (){
+                    $location.url('/login')
+                })
         }
 
 
