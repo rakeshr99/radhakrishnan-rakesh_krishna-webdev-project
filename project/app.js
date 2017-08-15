@@ -18,4 +18,4 @@ require("./website.service.server");
 require("./page.service.server");
 require("./widget.service.server");
 //for project-backup yelp
-require("./yelp.service.server");
+require("./restaurant.service.server");
