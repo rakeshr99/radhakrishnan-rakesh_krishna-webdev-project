@@ -12,6 +12,7 @@
         model.unregister = unregister;
         model.followMe = followMe;
         model.logout = logout;
+        model.createRestaurant = createRestaurant;
 
         function init() {
             var userId = loggedUser._id;
@@ -25,6 +26,10 @@
 
         }
         init();
+
+        function createRestaurant(){
+            $location.url('/new-restaurant');
+        }
 
         function logout(){
             userService

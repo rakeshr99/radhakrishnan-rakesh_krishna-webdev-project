@@ -17,7 +17,7 @@
                 controller : "searchController",
                 controllerAs : "model"
             })
-            .when("/details/:yelpId", {
+            .when("/restaurant/:yelpId", {
                 templateUrl: "details.html",
                 controller: "detailsController",
                 controllerAs: "model"

@@ -13,9 +13,17 @@
         $httpProvider.defaults.headers.post['Access-Control-Max-Age'] = '1728000';
         $routeProvider
             .when("/", {
-                templateUrl:"views/home/home.view.client.html",
+                templateUrl:"views/home/templates/home.view.client.html",
                 controller : "homeController",
-                controllerAs : "model"})
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }})
+            .when("/restaurant/:yelpId", {
+                templateUrl: "views/restaurant/templates/restaurant-details.view.client.html",
+                controller: "detailsController",
+                controllerAs: "model"
+            })
             .when("/login", {
                 templateUrl:"views/user/templates/login.view.client.html",
                 controller : "loginController",
@@ -23,7 +31,7 @@
             .when("/register", {
                 templateUrl : "views/user/templates/register.view.client.html",
                 controller : "registerController",
-                controllerAs : "model",
+                controllerAs : "model"
             })
             .when("/customer-profile", {
                 templateUrl : "views/user/templates/customer-profile.view.client.html",
@@ -36,6 +44,30 @@
             .when("/owner-profile", {
                 templateUrl : "views/user/templates/owner-profile.view.client.html",
                 controller : "ownerProfileController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
+            .when("/new-restaurant", {
+                templateUrl : "views/restaurant/templates/restaurant-new.view.client.html",
+                controller : "newRestaurantController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
+            .when("/list-restaurant/:restaurantId", {
+                templateUrl : "views/restaurant/templates/restaurant-list.view.client.html",
+                controller : "restaurantListController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
+            .when("/restaurant-details/:restaurantId", {
+                templateUrl : "views/restaurant/templates/restaurant-details.view.client.html",
+                controller : "restaurantDetailsController",
                 controllerAs : "model",
                 resolve: {
                     loggedUser : checkLogin

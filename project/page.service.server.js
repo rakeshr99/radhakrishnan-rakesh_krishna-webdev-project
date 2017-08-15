@@ -89,10 +89,6 @@ function createPage(req, res){
         }, function (err){
             res.statusCode(404).send(err);
         });
-/*    page._id = (new Date()).getTime() + "";
-    page.websiteId = websiteId;
-    pages.push(page);
-    res.send(pages);*/
 }
 
 function findPageByWebsiteId(req, res){
@@ -104,13 +100,5 @@ function findPageByWebsiteId(req, res){
             res.json(pages);
             return;
         });
-/*    var _pages = [];
-
-    for(var p in pages){
-        if(pages[p].websiteId === websiteId){
-            _pages.push(pages[p]);
-        }
-    }
-    res.send(_pages);*/
 }
 

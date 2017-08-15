@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/styles.css" rel="stylesheet"/>
+    <!-- from yelp folder above-->
+    <link href="../project/css/styles/search-bar.css" rel="stylesheet"/>
+    <link href="../project/css/styles/style.css" rel="stylesheet"/>
     <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
@@ -16,6 +19,14 @@
     <script src="../vendor/jquery/jquery-ui.js"></script>
     <script src="../vendor/jquery/jquery.ui.touch-punch.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../vendor/bootstrap/js/carousel.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        $(document).ready(function(){
+            $('.carousel').carousel({
+                interval: 2000
+            })
+        });
+    </script>
     <script src="../vendor/angular/angular.js"></script>
     <script src="../vendor/angular/angular-route.js"></script>
     <script src="../vendor/textangular/textAngular-rangy.min.js"></script>
@@ -44,10 +55,16 @@
     <script src="views/widget/controllers/widget-new.controller.client.js"></script>
     <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
     <script src="directives/wbdv-sortable.js"></script>
-    <script src="views/home/home.controller.client.js"></script>
+    <script src="views/home/controllers/home.controller.client.js"></script>
     <script src="views/widget/controllers/widget-flickr-search.controller.client.js"></script>
     <script src="services/flickr-service.service.client.js"></script>
     <script src="views/user/controllers/owner-list.controller.client.js"></script>
+    <script src="views/home/controllers/home.controller.client.js"></script>
+    <script src="views/restaurant/controllers/restaurant-details.controller.client.js"></script>
+    <script src="services/restaurant.service.client.js"></script>
+    <script src="views/restaurant/controllers/restaurant-new.controller.client.js"></script>
+    <script src="views/restaurant/controllers/restaurant-list.controller.client.js"></script>
+
 
 
     <!-- Bootstrap core CSS -->

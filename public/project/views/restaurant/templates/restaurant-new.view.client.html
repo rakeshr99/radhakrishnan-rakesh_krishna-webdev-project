@@ -1,0 +1,54 @@
+<div class="container-fluid">
+
+    <h2>New Restaurant</h2>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <label for="name">Name</label>
+    <input name="name"
+           type="text"
+           class="form-control"
+           placeholder="Hotel Empire"
+           id="name"
+            ng-model = "model.restaurant.name"/>
+
+<!--    <label for="password">Password</label>
+    <input name="password"
+           class="form-control"
+           type="password"
+           placeholder="david123"
+           id="password"
+           ng-model = "model.user.password"/>
+
+    <label for="confirm-password">Confirm Password</label>
+    <input name="confirm-password"
+           class="form-control"
+           type="password"
+           placeholder="david123"
+           id="confirm-password"
+           ng-model = "model.user.password2"/>
+
+    <input
+            type="radio"
+            name="customer"
+            id="customer"
+            value="CUSTOMER"
+            ng-model = "model.user.roles"/>
+    <label for="customer">Customer</label>
+    <input
+            type="radio"
+            name="Owner"
+            id="Owner"
+            value="OWNER"
+            ng-model = "model.user.roles"/>
+    <label for="Owner">Owner</label>-->
+
+    <a class="btn btn-default btn-block btn-primary"
+       ng-click = "model.createRestaurant(model.restaurant)"
+       role="button">Create</a>
+
+    <a class="btn btn-default btn-block btn-danger"
+       href="#!/login"
+       role="button">Cancel</a>
+</div>

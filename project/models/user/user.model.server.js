@@ -14,8 +14,28 @@ userModel.removeWebsite = removeWebsite;
 userModel.getOwnersList = getOwnersList;
 userModel.updateFollowing = updateFollowing;
 userModel.updateFollowed = updateFollowed;
+userModel.addRestaurant = addRestaurant;
+userModel.removeRestaurant = removeRestaurant;
 
 module.exports = userModel;
+
+function removeRestaurant(userId, restaurantId){
+    return userModel
+        .findById(userId)
+        .then(function (user){
+            var index = user.restaurants.indexOf(restaurantId);
+            user.restaurants.splice(index, 1);
+            return user.save();
+        })
+}
+
+function addRestaurant(userId,restaurantId){
+    return userModel.findUserById(userId)
+        .then(function (user){
+            user.restaurants.push(restaurantId);
+            user.save();
+        })
+}
 
 function updateFollowing(userId, ownerName){
     return userModel.findUserById(userId)

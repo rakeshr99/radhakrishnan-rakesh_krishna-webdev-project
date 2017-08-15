@@ -1,0 +1,153 @@
+footer {
+    background-color: #f2f2f2;
+    padding: 25px;
+}
+
+.carousel-inner img {
+    width: 100%; /* Set width to 100% */
+    min-height: 200px;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.navbar {
+    border: 0;
+}
+
+.navbar-default {
+    background-color: transparent;
+    border-color: #ffffff;
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    border-radius: 0;
+}
+
+@media (min-width: 1200px) {
+    .col-lg-9.rak-split-view-right {
+        width: 75%;
+        position: absolute;
+        right: 0px;
+        overflow-y: scroll;
+        top: 60px;
+        bottom: 0px;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-fixed-top, .navbar-fixed-bottom {
+        border-radius: 0;
+    }
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #f5a637;
+    background-color: transparent;
+}
+
+.rak-navbar-push-down{
+    padding-top: 100px;
+}
+
+#rak-background {
+    background: url('../../images/background-image-3.jpg');
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: RGBA(0, 0, 0, 0.61);
+    min-height: 630px;
+
+}
+
+.text-center {
+    text-align: center;
+}
+
+.rak-body {
+    font-size: 15px;
+    line-height: 1.52;
+    color: #717f86;
+    font-size: 16px;
+    font-family: 'Vladimir Script', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+#rak-search-screen-center-1{
+    font-size: 100px;
+    font-family: 'Vladimir Script', sans-serif;
+    font-weight: 400;
+    color:#b81900;
+}
+
+#rak-search-screen-center-2{
+
+}
+
+#rak-search-screen-center-3{
+
+}
+
+#rak-bg-color {
+    background-color: RGBA(0, 0, 0, 0.61);
+    min-height: 630px;
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+    border-right:0;
+    box-shadow:0 0 0;
+    border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.rak-search-bar{
+    padding-right: 350px !important;
+}
+
+.rak-details-page-name{
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.rating-qualifier {
+    display: block;
+    /*float: left;*/
+    color: #666;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.rak-price {
+    display: block;
+    /*float: left;*/
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}

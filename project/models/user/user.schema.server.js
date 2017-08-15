@@ -9,6 +9,7 @@ var userSchema = mongoose.Schema({
     email : String,
     phone : String,
     websites : [{type : mongoose.Schema.Types.ObjectId, ref : "WebsiteModel"}],
+    restaurants : [{type : mongoose.Schema.Types.ObjectId, ref : "RestaurantModel"}],
     dateCreated : {type :Date, default : Date.now},
     roles: [{type: String, enum:["ADMIN", "CUSTOMER", "OWNER"]}],
     following: [{type :String}],

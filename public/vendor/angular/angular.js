@@ -3513,7 +3513,7 @@ forEach('multiple,selected,checked,disabled,readOnly,required,open'.split(','), 
   BOOLEAN_ATTR[lowercase(value)] = value;
 });
 var BOOLEAN_ELEMENTS = {};
-forEach('input,select,option,textarea,button,form,details'.split(','), function(value) {
+forEach('input,select,option,textarea,button,form,restaurant'.split(','), function(value) {
   BOOLEAN_ELEMENTS[value] = true;
 });
 var ALIASED_ATTR = {
@@ -14254,7 +14254,7 @@ function $LocationProvider() {
    *
    * This change can be prevented by calling
    * `preventDefault` method of the event. See {@link ng.$rootScope.Scope#$on} for more
-   * details about event object. Upon successful change
+   * restaurant about event object. Upon successful change
    * {@link ng.$location#$locationChangeSuccess $locationChangeSuccess} is fired.
    *
    * The `newState` and `oldState` parameters may be defined only in HTML5 mode and when
@@ -17513,7 +17513,7 @@ function $RootScopeProvider() {
      *
      * When interacting with `Scope` in tests, additional helper methods are available on the
      * instances of `Scope` type. See {@link ngMock.$rootScope.Scope ngMock Scope} for additional
-     * details.
+     * restaurant.
      *
      *
      * @param {Object.<string, function()>=} providers Map of service factory which need to be
@@ -19007,7 +19007,7 @@ function adjustMatchers(matchers) {
  * and
  * {@link ng.$sceDelegateProvider#resourceUrlBlacklist $sceDelegateProvider.resourceUrlBlacklist},
  *
- * For the general details about this service in Angular, read the main page for {@link ng.$sce
+ * For the general restaurant about this service in Angular, read the main page for {@link ng.$sce
  * Strict Contextual Escaping (SCE)}.
  *
  * **Example**:  Consider the following case. <a name="example"></a>
@@ -19665,7 +19665,7 @@ function $SceProvider() {
    * A note on the inheritance model for SCE contexts
    * ------------------------------------------------
    * I've used inheritance and made RESOURCE_URL wrapped types a subtype of URL wrapped types.  This
-   * is purely an implementation details.
+   * is purely an implementation restaurant.
    *
    * The contract is simply this:
    *
@@ -23009,9 +23009,9 @@ var htmlAnchorDirective = valueFn({
        </file>
        <file name="protractor.js" type="protractor">
          it('should toggle open', function() {
-           expect(element(by.id('details')).getAttribute('open')).toBeFalsy();
+           expect(element(by.id(restaurant)).getAttribute('open')).toBeFalsy();
            element(by.model('open')).click();
-           expect(element(by.id('details')).getAttribute('open')).toBeTruthy();
+           expect(element(by.id(restaurant)).getAttribute('open')).toBeTruthy();
          });
        </file>
      </example>
@@ -25718,7 +25718,7 @@ function checkboxInputType(scope, element, attr, ctrl, $sniffer, $browser, $filt
  *
  * You can work around this Internet Explorer issue by using `ng-attr-placeholder` instead of
  * `placeholder` on textareas, whenever you need interpolation in the placeholder value. You can
- * find more details on `ngAttr` in the
+ * find morrestaurantls on `ngAttr` in the
  * [Interpolation](guide/interpolation#-ngattr-for-binding-to-arbitrary-attributes) section of the
  * Developer Guide.
  */
