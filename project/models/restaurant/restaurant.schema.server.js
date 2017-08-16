@@ -24,6 +24,7 @@ var restaurantSchema = mongoose.Schema({
     photos : [{type: String}],
     price :  String,
     url : String,
+    reviews : [{type : mongoose.Schema.Types.ObjectId, ref : "ReviewModel"}],
     dateCreated : {type:Date, default: Date.now}
 }, {collection : "restaurant"});
 

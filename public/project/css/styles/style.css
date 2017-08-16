@@ -162,9 +162,15 @@ footer {
 }
 
 .rak-heart-color{
-    color:red;
+    color:white;
+    padding-left: 5px;
 }
 
 .rak-remove-color{
     color:red;
+}
+
+.rak-star-color{
+    color:white;
+    padding-left: 5px;
 }

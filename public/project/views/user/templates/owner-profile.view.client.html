@@ -72,7 +72,7 @@
     <label>My Restaurant</label>
     <ul class="list-group">
         <div ng-repeat = "restaurant in model.user.restaurants" class="wd-widget">
-            <li class="list-group-item" ng-repeat = "restaurant in model.user.restaurants">
+            <li class="list-group-item">
                 <a href="#!/restaurant-details/{{restaurant._id}}">{{restaurant.name}}</a>
         </div>
     </ul>

@@ -1,0 +1,74 @@
+<div>
+    <nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
+        <div class="container-fluid">
+            <a href="#!/">
+            <span
+                    class="glyphicon glyphicon-chevron-left white pull-left glyphicon-chevron-position">
+            </span>
+            </a>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div>
+                <!--<a class="navbar-brand" white href="#!/customer-profile/{{model.userId}}">New Restaurant</a>-->
+                <a class="navbar-brand" href="">Foodster</a>
+            </div>
+            <div>
+                <a ng-click = "model.updateUser(model.user)"><span class="glyphicon glyphicon-ok pull-right
+                  navbar-right glyphicon-ok-position white" aria-expanded="true"
+                                                                   aria-hidden="true"></span>
+                </a>
+            </div>
+            <!--</div>-->
+
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+<div class="container-fluid">
+    <div>
+        <label for="textarea">
+            <h2>Write a Review</h2>
+        </label>
+    </div>
+    <div>
+        <textarea rows="6"
+                  id="textarea"
+                  ng-model = "model.review.reviews.text"
+        class="form-control"> </textarea>
+    </div>
+    <div>
+        <label for="rating">Rating</label>
+        <input name="rating"
+               class="form-control"
+               type="text"
+               placeholder="5"
+               id="rating"
+               ng-model = "model.review.reviews.rating"/>
+    </div>
+    <div>
+        <label for="name">Your Name</label>
+        <input name="name"
+               class="form-control"
+               type="text"
+               placeholder="Kimi Raikkonen"
+               id="name"
+               ng-model = "model.review.reviews.user.name"/>
+    </div>
+    <div>
+        <label for="image">Your Image</label>
+        <input name="image"
+               class="form-control"
+               type="text"
+               placeholder="http://www.turnology.com/wp-content/blogs.dir/1/files/2017/04/2017-04-24_03-34-03.jpg"
+               id="image"
+               ng-model = "model.review.reviews.user.image_url"/>
+    </div>
+    <div>
+        <button
+                class="btn btn-danger"
+                ng-click = "model.createReview(model.restaurantId, model.review)">
+            Add Your Review<span class="glyphicon glyphicon-done rak-star-color" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
+    <div ng-include="'views/footerCommon.view.client.html'"></div>
+</div>

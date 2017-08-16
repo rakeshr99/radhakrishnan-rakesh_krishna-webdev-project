@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owners List</title>
+</head>
+<body>
+<ul class="list-group">
+    <div ng-repeat = "review in model.reviews" class="wd-widget">
+        <li class="list-group-item">
+            <div>
+                <a href="">{{review.text}}</a>
+                <!--<a href="">{{local.text}}</a>-->
+            </div></li>
+<!--        <li>
+            <div>
+                <a href="">{{model.localReview.text}}</a>
+                &lt;!&ndash;<a href="">{{local.text}}</a>&ndash;&gt;
+            </div>
+        </li>-->
+            <div ng-repeat = "local in model.localReview">
+                <!--<a href="">{{review.text}}</a>-->
+                <a href="">{{local.text}}</a>
+            </div>
+    </div>
+    <div ng-repeat = "local in model.localReview">
+        <!--<a href="">{{review.text}}</a>-->
+        <a href="">{{local.text}}</a>
+    </div>
+<!--    <div ng-repeat = "review in model.localReviews" class="wd-widget">
+        <li class="list-group-item">
+            <div>
+                <a href="#!/owner">{{review.text}}</a>
+                <button
+                        type="button"
+                        class="btn btn-default btn-sm pull-right rak-follow-button-padding"
+                        ng-click = "model.followMe(review.username)">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Update
+                </button>
+            </div>
+    </div>-->
+</ul>
+</body>
+</html>

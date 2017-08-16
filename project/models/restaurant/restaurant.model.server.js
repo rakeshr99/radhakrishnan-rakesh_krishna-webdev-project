@@ -9,11 +9,28 @@ restaurantModel.createRestaurant = createRestaurant;
 restaurantModel.updateRestaurant = updateRestaurant;
 restaurantModel.deleteRestaurant = deleteRestaurant;
 restaurantModel.getAllRestaurants = getAllRestaurants;
-
-/*pageModel.addWidget = addWidget;
-pageModel.removeWidget = removeWidget;*/
+restaurantModel.addReview = addReview;
+restaurantModel.removeReview = removeReview;
 
 module.exports = restaurantModel;
+
+function removeReview(restaurantId, reviewId){
+    return restaurantModel
+        .findById(restaurantId)
+        .then(function (restaurant){
+            var index = restaurant.reviews.indexOf(reviewId);
+            restaurant.reviews.splice(index, 1);
+            return restaurant.save();
+        })
+}
+
+function addReview(restaurantId,reviewId){
+    return restaurantModel.findById(restaurantId)
+        .then(function (restaurant){
+            restaurant.reviews.push(reviewId);
+            return restaurant.save();
+        })
+}
 
 function getAllRestaurants(){
     return restaurantModel.find();
@@ -27,25 +44,33 @@ function findAllRestaurantsForUser(userId){
 }
 
 function findRestaurantById(restaurantId){
-    return restaurantModel.findById({_id : restaurantId})
+    return restaurantModel
+            .findById({_id : restaurantId})
+            .populate("reviews", "total");
 }
 
 function createRestaurant(userId, restaurant){
     restaurant._user = userId;
     var restauranttmp = null;
-    return restaurantModel
-        .create(restaurant)
-        .then(function (restaurantDoc){
-            restauranttmp = restaurantDoc;
-            return userModel.addRestaurant(userId, restaurantDoc._id)
-        }, function(error){
-            return res.json({error:error.message});
-        }).catch(function () {
-            console.log("Promise Rejected");
-        })
-        .then(function (userDoc) {
-            return restauranttmp;
-        });
+    if(restaurant._id == null){
+        return restaurantModel
+            .create(restaurant)
+            .then(function (restaurantDoc){
+                restauranttmp = restaurantDoc;
+                return userModel.addRestaurant(userId, restaurantDoc._id)
+            }, function(error){
+                return res.json({error:error.message});
+            }).catch(function () {
+                console.log("Promise Rejected");
+            })
+            .then(function (userDoc) {
+                return restauranttmp;
+            });
+    }else{
+        return restaurantModel
+            .findById({_id : restaurant._id});
+    }
+
 }
 
 function updateRestaurant(restaurantId, restaurant){
@@ -59,21 +84,3 @@ function deleteRestaurant(userId, restaurantId){
             return userModel.removeRestaurant(userId, restaurantId);
         });
 }
-
-/*function removeWidget(pageId, widgetId){
-    return pageModel
-        .findById(pageId)
-        .then(function (page){
-            var index = page.widgets.indexOf(widgetId);
-            page.widgets.splice(index, 1);
-            return page.save();
-        })
-}
-
-function addWidget(pageId,widgetId){
-    return pageModel.findById(pageId)
-        .then(function (page){
-            page.widgets.push(widgetId);
-            return page.save();
-        })
-}*/

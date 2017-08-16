@@ -1,6 +1,5 @@
-<body>
-
-<nav class="navbar navbar-inverse nav-collapse collapsing">
+<div>
+<nav class="navbar navbar-inverse navbar-fixed-top nav-collapse collapsing">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -68,11 +67,23 @@
             <div>
                 <span>
                     <button
-                            class="btn btn-default btn-lg btn-block rak-details-page-button"
+                            class="btn btn-danger"
                             ng-click = "model.createRestaurant(model.userId, model.restaurant)"
                             name="Favourite"
                             id="Favourite">
                         Favourite<span class="glyphicon glyphicon-heart rak-heart-color" aria-hidden="true"></span>
+                    </button>
+                    <button
+                            class="btn btn-danger"
+                            ng-hide="model.isOwner()"
+                            ng-click = "model.createRestaurantForReview(model.userId, model.restaurant)">
+                        Write a Review<span class="glyphicon glyphicon-star rak-star-color" aria-hidden="true"></span>
+                    </button>
+                    <button
+                                                class="btn btn-danger"
+                                                ng-hide="model.isOwner()"
+                                                ng-click = "model.getAllReviews(model.resId)">
+                        Reviews<span class="glyphicon glyphicon-list rak-star-color" aria-hidden="true"></span>
                     </button>
                 </span>
             </div>
@@ -93,7 +104,7 @@
                     <button
                             class="btn btn-default btn-lg btn-block rak-details-page-button"
                             ng-click = "model.updateRestaurant(model.restaurant)"
-                            name="deleteRestaurant"
+                            name="updateRestaurant"
                             id="updateRestaurant"
                             ng-hide="model.isCustomer()">
                         Update<span class="glyphicon glyphicon-pencil rak-edit-color" aria-hidden="true"></span>
@@ -141,11 +152,11 @@
                 </div>
 
                 <!-- Left and right controls -->
-                <a class="left carousel-control" href="/project/#!/restaurant-details/{{model.restaurant._id}}#myCarousel" role="button" data-slide="prev">
+                <a class="left carousel-control" href="/project/#!/restaurant-details/{{model.restaurant.id}}#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="right carousel-control" href="/project/#!/restaurant-details/{{model.restaurant._id}}#myCarousel" role="button" data-slide="next">
+                <a class="right carousel-control" href="/project/#!/restaurant-details/{{model.restaurant.id}}#myCarousel" role="button" data-slide="next">
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
@@ -222,6 +233,6 @@
     <p>Footer Text</p>
 </footer>
 
-</body>
+</div>
 <!--</html>-->
 

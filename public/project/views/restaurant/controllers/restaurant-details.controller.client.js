@@ -9,11 +9,14 @@
             this.isOwner = isOwner;
             this.deleteRestaurant = deleteRestaurant;
             this.updateRestaurant = updateRestaurant;
-
-            var yelpId = $routeParams.restaurantId;
+            this.reviewRestaurant = reviewRestaurant;
+            this.createRestaurantForReview = createRestaurantForReview;
+            this.getAllReviews = getAllReviews;
 
             function init(){
+                var yelpId = $routeParams.restaurantId;
                 model.userId = loggedUser._id;
+                model.resId = $routeParams.restaurantId;
                 restaurantService
                     .searchRestaurantById(yelpId)
                     .then(function (response){
@@ -31,13 +34,16 @@
                     })
             }init();
 
+            function getAllReviews(restaurantId){
+                $location.url("/review-list/"+restaurantId);
+            }
+
+            function reviewRestaurant(restaurantId){
+                $location.url("/review-restaurant/"+restaurantId);
+            }
+
             function updateRestaurant(restaurant){
                 $location.url("/update-restaurant/"+restaurant._id);
-/*                restaurantService
-                    .updateRestaurant(model.userId, restaurant)
-                    .then( function (restaurants){
-                        model.restaurants = restaurants;
-                    });*/
             }
 
             function deleteRestaurant(userId, restaurantId){
@@ -68,6 +74,16 @@
                     .createRestaurant(userId, restaurant)
                     .then( function (restaurants){
                         model.restaurants = restaurants;
+                    });
+                //$location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page");
+            }
+
+            function createRestaurantForReview(userId, restaurant){
+                restaurantService
+                    .createRestaurant(userId, restaurant)
+                    .then( function (restaurant){
+                        model.restaurant = restaurant;
+                        $location.url("/review-restaurant/"+restaurant._id);
                     });
                 //$location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page");
             }

@@ -81,6 +81,22 @@
                     loggedUser : checkLogin
                 }
             })
+            .when("/review-restaurant/:restaurantId", {
+                templateUrl : "views/reviews/templates/review-new.view.client.html",
+                controller : "newReviewController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
+            .when("/review-list/:restaurantId", {
+                templateUrl : "views/reviews/templates/review-list.view.client.html",
+                controller : "reviewListController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
             .when("/user/:userId/website", {
                 templateUrl : "views/website/templates/website-list.view.client.html",
                 controller : "websiteListController",
