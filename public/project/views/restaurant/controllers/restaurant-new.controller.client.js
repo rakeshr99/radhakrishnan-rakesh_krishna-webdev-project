@@ -16,7 +16,12 @@
 
         }init();
 
-        function createRestaurant(restaurant){
+        function createRestaurant(restaurant, photos){
+
+            restaurant.photos = [];
+
+                restaurant.photos.push(photos.photo1, photos.photo2, photos.photo3)
+
             restaurantService
                 .createRestaurant(model.userId, restaurant)
                 .then( function (restaurants){

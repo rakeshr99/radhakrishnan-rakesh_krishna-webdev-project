@@ -2,12 +2,13 @@
     angular
         .module("WamApp")
         .controller("restaurantDetailsController", restaurantDetailsController);
-        function restaurantDetailsController($routeParams, restaurantService, loggedUser){
+        function restaurantDetailsController($routeParams, restaurantService, loggedUser, $location){
             var model = this;
             this.createRestaurant = createRestaurant;
             this.isCustomer = isCustomer;
             this.isOwner = isOwner;
             this.deleteRestaurant = deleteRestaurant;
+            this.updateRestaurant = updateRestaurant;
 
             var yelpId = $routeParams.restaurantId;
 
@@ -29,6 +30,15 @@
                         }
                     })
             }init();
+
+            function updateRestaurant(restaurant){
+                $location.url("/update-restaurant/"+restaurant._id);
+/*                restaurantService
+                    .updateRestaurant(model.userId, restaurant)
+                    .then( function (restaurants){
+                        model.restaurants = restaurants;
+                    });*/
+            }
 
             function deleteRestaurant(userId, restaurantId){
                 restaurantService.deleteRestaurant(userId, restaurantId)

@@ -8,7 +8,7 @@
             </a>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div>
-                <a class="navbar-brand" white href="#!/customer-profile/{{model.userId}}">New Restaurant</a>
+                <a class="navbar-brand" white href="#!/customer-profile/{{model.userId}}">Edit Restaurant</a>
             </div>
             <div>
                 <a ng-click = "model.updateUser(model.user)"><span class="glyphicon glyphicon-ok pull-right
@@ -152,8 +152,8 @@
         </span>
 
     <a class="btn btn-default btn-block btn-primary"
-       ng-click = "model.createRestaurant(model.restaurant, model.photos)"
-       role="button">Create</a>
+       ng-click = "model.updateRestaurant(model.restaurant, model.photos)"
+       role="button">Update</a>
 
     <a class="btn btn-default btn-block btn-danger"
        href="#!/login"

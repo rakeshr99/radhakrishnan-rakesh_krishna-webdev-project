@@ -10,6 +10,15 @@
         this.getAllRestaurants = getAllRestaurants;
         this.searchRestaurantById =searchRestaurantById;
         this.deleteRestaurant = deleteRestaurant;
+        this.updateRestaurant = updateRestaurant;
+
+        function updateRestaurant(restaurantId, restaurant){
+            var url = "/api/update-restaurant/"+restaurantId;
+            return $http.put(url, restaurant)
+                .then(function (response){
+                    return response.data;
+                });
+        }
 
         function deleteRestaurant(userId, restaurantId){
             var url = "/api/delete-restaurant?userId="+userId+"&restaurantId="+restaurantId;

@@ -73,6 +73,14 @@
                     loggedUser : checkLogin
                 }
             })
+            .when("/update-restaurant/:restaurantId", {
+                templateUrl : "views/restaurant/templates/restaurant-edit.view.client.html",
+                controller : "editRestaurantController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
             .when("/user/:userId/website", {
                 templateUrl : "views/website/templates/website-list.view.client.html",
                 controller : "websiteListController",

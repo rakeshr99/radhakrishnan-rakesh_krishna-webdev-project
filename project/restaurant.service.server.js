@@ -11,7 +11,24 @@ app.post("/api/new-restaurant", createRestaurant);
 app.get("/api/list-restaurant", getAllRestaurants);
 app.get("/api/yelp/localSearch/:yelpId", searchRestaurantById);
 app.delete("/api/delete-restaurant", deleteRestaurant);
+app.put("/api/update-restaurant/:restaurantId", updateRestaurant);
 
+function updateRestaurant(req, res){
+    var restaurantId = req.params.restaurantId;
+    var restaurant = req.body;
+
+    restaurantModel
+        .updateRestaurant(restaurantId,restaurant)
+        .then(function (status){
+            if(status){
+                res.json((status));
+                return;
+            }else{
+                res.send(404);
+                return;
+            }
+        });
+}
 
 function deleteRestaurant(req, res){
     var userId = req.query.userId;

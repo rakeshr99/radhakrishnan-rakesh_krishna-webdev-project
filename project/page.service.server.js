@@ -45,13 +45,6 @@ function updatePage(req, res){
                 return;
             }
         });
-/*    for(var p in pages){
-        if(pages[p]._id == pageId){
-            pages[p].description = page.description;
-            res.send(pages);
-            return;
-        }
-    }*/
 }
 
 function findPageById(req, res){
