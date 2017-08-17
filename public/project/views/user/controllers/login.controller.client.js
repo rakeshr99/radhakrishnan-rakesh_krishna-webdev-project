@@ -30,7 +30,9 @@
                             }else{
                                 model.errorMessage = "Invalid login credentials, the username or password you entered is incorrect";
                             }
-                        })
+                        }, function (err) {
+                            model.errorMessage = "Invalid login credentials, the username or password you entered is incorrect";
+                        });
 
         }
     }

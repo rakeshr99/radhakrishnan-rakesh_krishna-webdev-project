@@ -2,34 +2,37 @@
 <nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <a href="#!/user/{{model.userId}}/website">
+        <a href="#!/">
         <span class="glyphicon glyphicon-chevron-left
         white pull-left glyphicon-chevron-position"></span>
         </a>
         <div>
-            <a class="navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">Restaurants List</a>
+            <a class="navbar-brand" href="">Restaurants List</a>
         </div>
-            <div>
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
-                    <span class="glyphicon glyphicon-plus
-                     glyphicon-ok-position white"
-                     aria-hidden="true"></span>
-                </a>
-            </div>
         <!--</div>-->
 
     </div><!-- /.container-fluid -->
 </nav>
-<div class="container-fluid">
+<div class="container-fluid rak-body-padding-bottom">
     <ul class="list-group">
         <li class="list-group-item">
-            <div ng-repeat = "restaurant in model.restaurants"class="row">
-                <a href="" ng-click="model.getRestaurantDetails(restaurant.id)"><div class="col-xs-10">{{restaurant.name}}</div></a>
-                <div class="col-xs-2">
-                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
-                        <span class="glyphicon glyphicon-cog pull-right">
-                        </span>
-                    </a>
+            <div ng-repeat = "restaurant in model.restaurants" class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="" ng-click="model.getRestaurantDetails(restaurant.id)"><div class="col-xs-4 rak-res-name-list-screen">
+                                {{restaurant.name}}</div></a>
+                        </div>
+                        <div class="col-sm-4 review-count-list rating-qualifier">
+                            <span class="">Rating : {{restaurant.rating}}  Stars       </span>
+                            <span class="pull-right">                     Reviews : {{restaurant.review_count}}</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="" class="pull-right">
+                                <img src="{{restaurant.image_url}}" height="100px"/>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </li>

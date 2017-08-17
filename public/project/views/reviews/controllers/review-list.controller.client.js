@@ -7,15 +7,18 @@
     function reviewListController($routeParams, reviewService, $location, loggedUser){
         var model = this;
         //model.createReview = createReview;
+        this.deleteReview = deleteReview;
+        this.updateReview = updateReview;
 
         function init(){
             model.userId= loggedUser._id;
             model.restaurantId = $routeParams.restaurantId;
             model.locals = {};
             model.localReview = {};
+            model.reviewId = 0;
 
             reviewService
-                .searchReviewById(model.restaurantId)
+                .searchReviewById(model.userId, model.restaurantId)
                 .then(function (response){
                     model.localReviews = response;
                     if(model.localReviews == "0"){
@@ -23,7 +26,7 @@
                             .getReviewsFromYelp(model.restaurantId)
                             .then(function (response){
                                 model.reviews = response.jsonBody.reviews;
-                                console.log(model.reviews)
+                                console.log(model.reviews);
                                 return;
                                 //reviewsFromYelp = response.jsonBody;
                                 //model.reviews.push(reviewsFromYelp);
@@ -31,11 +34,26 @@
                     }else{
                         model.locals = model.localReviews[0];
                         model.localReview = model.locals.reviews;
+                        console.log(model.locals._id);
+                        model.reviewId = model.locals._id;
                         return;
                     }
                 })
 
         }init();
+
+        //model.deleteReview(model.userId,model.restaurantId, model.reviewId)
+
+        function updateReview(reviewId){
+            $location.url("/update-review/"+reviewId);
+        }
+
+        function deleteReview(userId, restaurantId, reviewId){
+            reviewService.deleteReview(userId, restaurantId, reviewId)
+                .then( function (response){
+                    $location.url("/");
+                });
+        }
 
         function createReview(restaurantId, review){
 

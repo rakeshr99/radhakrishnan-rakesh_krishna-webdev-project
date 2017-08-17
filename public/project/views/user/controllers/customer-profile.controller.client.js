@@ -17,11 +17,18 @@
         function init() {
             var userId = loggedUser._id;/*$routeParams["userId"]*/;
             model.userId = userId;
+            model.locals = {};
+            model.localReview = {};
+
             userService.findUserById(userId)
                     .then(function (response){
                         model.user = response.data;
                         model.following = model.user.following;
-                })
+                        model.locals = model.user.reviews[0];
+                        model.localReview = model.locals.reviews;
+                        //model.reviews = model.user.reviews;
+                        //console.log(model.reviews);
+                });
 
         }
         init();

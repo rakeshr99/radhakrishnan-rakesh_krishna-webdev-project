@@ -2,7 +2,7 @@
     angular
         .module("WamApp")
         .controller("restaurantDetailsController", restaurantDetailsController);
-        function restaurantDetailsController($routeParams, restaurantService, loggedUser, $location){
+        function restaurantDetailsController($routeParams, restaurantService, loggedUser, $location, reviewService){
             var model = this;
             this.createRestaurant = createRestaurant;
             this.isCustomer = isCustomer;
@@ -12,6 +12,7 @@
             this.reviewRestaurant = reviewRestaurant;
             this.createRestaurantForReview = createRestaurantForReview;
             this.getAllReviews = getAllReviews;
+            this.searchRestaurantByTitle = searchRestaurantByTitle;
 
             function init(){
                 var yelpId = $routeParams.restaurantId;
@@ -26,12 +27,38 @@
                                 .searchRestaurantByYelpId(yelpId)
                                 .then(function (response){
                                     model.restaurant = response.jsonBody;
-                                    return;
+                                    model.address = model.restaurant.location[0];
+                                    //return;
                                 })
                         }else{
+                            //return;
+                        }
+                    });
+
+                //for reviews
+                reviewService
+                    .searchReviewById(model.userId, model.resId)
+                    .then(function (response){
+                        model.localReviews = response;
+                        if(model.localReviews == "0"){
+                            reviewService
+                                .getReviewsFromYelp(model.resId)
+                                .then(function (response){
+                                    model.reviews = response.jsonBody.reviews;
+                                    console.log(model.reviews);
+                                    return;
+                                    //reviewsFromYelp = response.jsonBody;
+                                    //model.reviews.push(reviewsFromYelp);
+                                })
+                        }else{
+                            model.locals = model.localReviews[0];
+                            model.localReview = model.locals.reviews;
+                            console.log(model.locals._id);
+                            model.reviewId = model.locals._id;
                             return;
                         }
                     })
+
             }init();
 
             function getAllReviews(restaurantId){
@@ -86,6 +113,17 @@
                         $location.url("/review-restaurant/"+restaurant._id);
                     });
                 //$location.url("/user/"+model.userId+"/website/"+model.websiteId+"/page");
+            }
+
+            function searchRestaurantByTitle(restaurantId){
+                //alert(title);
+                /*            restaurantService
+                 .searchRestaurantByTitle(title)
+                 .then(function (response){
+                 model.restaurants = response.jsonBody.businesses;
+                 })*/
+                $location.url("/list-restaurant/"+restaurantId);
+
             }
         }
 })();

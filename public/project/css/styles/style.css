@@ -98,15 +98,21 @@ footer {
     font-size: 100px;
     font-family: 'Vladimir Script', sans-serif;
     font-weight: 400;
-    color:#b81900;
+    color:#000000;
 }
 
 #rak-search-screen-center-2{
-
+    font-size: 50px;
+    font-family: 'Vladimir Script', sans-serif;
+    font-weight: 400;
+    color:#000000;
 }
 
 #rak-search-screen-center-3{
-
+    font-size: 30px;
+    font-family: 'Vladimir Script', sans-serif;
+    font-weight: 400;
+    color:#000000;
 }
 
 #rak-bg-color {
@@ -173,4 +179,48 @@ footer {
 .rak-star-color{
     color:white;
     padding-left: 5px;
+}
+
+.rak-body-padding-bottom{
+    padding-bottom: 70px;
+}
+
+.rak-res-name-list-screen{
+    font-size: 20px;
+}
+
+.rak-submit-button{
+    padding-bottom: 6px;
+    padding-top: 6px;
+    margin-bottom: 5px;
+}
+
+.ArtistPic {
+/*    height:170px;
+    width:auto;!*maintain aspect ratio*!
+    max-width:500px;*/
+    margin-top: 20px;
+}
+
+.rak-register-body{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.rak-delete-button{
+    padding-right: 14px;
+    padding-left: 12px;
+}
+
+.rak-update-button{
+    padding-right: 12px;
+    margin-top: 10px;
+}
+
+.rak-true-false{
+    color:#3e8f3e;
+}
+
+.rak-owners-list-button{
+    margin-bottom: 5px;
 }

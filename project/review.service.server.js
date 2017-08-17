@@ -13,8 +13,34 @@ app.delete("/api/delete-restaurant", deleteRestaurant);
 app.put("/api/update-restaurant/:restaurantId", updateRestaurant);*/
 
 app.post("/api/new-review", createReview);
-app.get("/api/yelp/localSearchReview/:restaurantId", searchReviewById);
+app.get("/api/yelp/localSearchReview/:restaurantId/:userId", searchReviewById);
 app.get("/api/yelp-review/:restaurantId", getReviewsFromYelp);
+app.delete("/api/delete-review", deleteReview);
+app.get("/api/search-review/:reviewId", searchReviewByIdForUpdate);
+
+function searchReviewByIdForUpdate(req, res){
+    var reviewId = req.params.reviewId;
+
+    reviewModel
+        .findReviewById(reviewId)
+        .then(function (review){
+            res.json(review);
+            return;
+        });
+}
+
+function deleteReview(req, res){
+    var userId = req.query.userId;
+    var restaurantId = req.query.restaurantId;
+    var reviewId = req.query.reviewId;
+
+    return reviewModel
+        .deleteReview(userId, restaurantId, reviewId)
+        .then(function (status){
+            res.json(status);
+            return;
+        });
+}
 
 function getReviewsFromYelp(req, res){
     var restaurantId = req.params.restaurantId;
@@ -52,11 +78,12 @@ function getReviewsFromYelp(req, res){
 
 function searchReviewById(req, res){
     var restaurantId = req.params.restaurantId;
+    var userId = req.params.userId;
 
     if(mongoose.Types.ObjectId.isValid(restaurantId))
     {
         return reviewModel
-            .findAllReviewsForRestaurant(restaurantId)
+            .findAllReviewsForRestaurant(userId, restaurantId)
             .then(function (review){
                 if(!(review == "0")){
                     res.json(review);
@@ -95,10 +122,11 @@ function updateRestaurant(req, res){
 function createReview(req, res){
     var body = req.body;
     var restaurantId = body.restaurantId;
+    var userId = body.userId;
     var review = body.review;
 
     reviewModel
-        .createReview(restaurantId,review)
+        .createReview(userId, restaurantId,review)
         .then(function (review){
             res.json(review);
             return;

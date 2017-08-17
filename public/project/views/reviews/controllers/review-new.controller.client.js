@@ -13,10 +13,10 @@
             model.restaurantId = $routeParams.restaurantId;
         }init();
 
-        function createReview(restaurantId, review){
+        function createReview(userId, restaurantId, review){
 
             reviewService
-                .createReview(restaurantId, review)
+                .createReview(userId, restaurantId, review)
                 .then( function (reviews){
                     model.reviews = reviews;
                     $location.url("/restaurant-details/"+restaurantId);

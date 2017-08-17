@@ -97,6 +97,14 @@
                     loggedUser : checkLogin
                 }
             })
+            .when("/update-review/:reviewId", {
+                templateUrl : "views/reviews/templates/review-edit.view.client.html",
+                controller : "editReviewController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }
+            })
             .when("/user/:userId/website", {
                 templateUrl : "views/website/templates/website-list.view.client.html",
                 controller : "websiteListController",

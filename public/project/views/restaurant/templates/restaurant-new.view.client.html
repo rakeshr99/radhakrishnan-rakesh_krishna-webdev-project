@@ -10,19 +10,13 @@
             <div>
                 <a class="navbar-brand" white href="#!/customer-profile/{{model.userId}}">New Restaurant</a>
             </div>
-            <div>
-                <a ng-click = "model.updateUser(model.user)"><span class="glyphicon glyphicon-ok pull-right
-                  navbar-right glyphicon-ok-position white" aria-expanded="true"
-                                                                   aria-hidden="true"></span>
-                </a>
-            </div>
-            <!--</div>-->
 
         </div><!-- /.container-fluid -->
     </nav>
+</div>
 
 
-<div class="container-fluid">
+<div class="container-fluid rak-body-padding-bottom">
 
     <div ng-show="model.error" class="alert alert-danger">
         {{model.error}}
@@ -33,7 +27,8 @@
            class="form-control"
            placeholder="Hotel Empire"
            id="name"
-           ng-model = "model.restaurant.name"/>
+           ng-model = "model.restaurant.name"
+           required/>
 
     <label for="phone">Display Phone Number</label>
     <input name="phone"
@@ -41,7 +36,8 @@
            type="text"
            placeholder="(857) 423-6959"
            id="phone"
-           ng-model = "model.restaurant.display_phone"/>
+           ng-model = "model.restaurant.display_phone"
+           required/>
 
     <label for="phonenumber">Phone Number</label>
     <input name="phonenumber"
@@ -49,7 +45,8 @@
            type="text"
            placeholder="+8574239656"
            id="phonenumber"
-           ng-model = "model.restaurant.phone"/>
+           ng-model = "model.restaurant.phone"
+           required/>
 
     <label for="price">Price</label>
     <input name="price"
@@ -57,7 +54,8 @@
            type="text"
            placeholder="$$$"
            id="price"
-           ng-model = "model.restaurant.price"/>
+           ng-model = "model.restaurant.price"
+           required/>
 
     <label for="photo1">Photo</label>
     <input name="photo1"
@@ -65,6 +63,7 @@
            type="text"
            placeholder="http://www.emilesrestaurant.com/restaurant-691397_960_720.jpg"
            id="photo1"
+           required
            ng-model = "model.photos.photo1"/>
 
     <label for="photo2">One more photo?</label>
@@ -73,7 +72,8 @@
            type="text"
            placeholder="http://www.emilesrestaurant.com/restaurant-691397_960_721.jpg"
            id="photo2"
-           ng-model = "model.photos.photo2"/>
+           ng-model = "model.photos.photo2"
+           required/>
 
     <label for="photo3">Ok, the last photo</label>
     <input name="photo3"
@@ -81,7 +81,8 @@
            type="text"
            placeholder="http://www.emilesrestaurant.com/restaurant-691397_960_722.jpg"
            id="photo3"
-           ng-model = "model.photos.photo3"/>
+           ng-model = "model.photos.photo3"
+           required/>
 
     <label for="address1">Location</label>
     <div>
@@ -90,6 +91,7 @@
                    type="text"
                    placeholder="address1"
                    id="address1"
+                   required
                    ng-model = "model.restaurant.location.address1"/>
 
                     <input name="address2"
@@ -159,5 +161,5 @@
        href="#!/login"
        role="button">Cancel</a>
 </div>
-    <div ng-include="'views/footerCommon.view.client.html'"></div>
+<div ng-include="'views/footerCommon.view.client.html'"></div>
 </div>

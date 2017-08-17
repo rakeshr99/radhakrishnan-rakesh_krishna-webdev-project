@@ -56,11 +56,6 @@ function findPageById(req, res){
             res.json(page);
             return;
         });
-/*    for(var p in pages){
-        if(pages[p]._id === pageId){
-            res.send(pages[p]);
-        }
-    }*/
 }
 
 function createPage(req, res){

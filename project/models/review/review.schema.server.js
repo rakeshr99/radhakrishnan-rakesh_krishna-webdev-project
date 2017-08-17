@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var reviewSchema = mongoose.Schema({
     _restaurant : {type : mongoose.Schema.Types.ObjectId, ref : "RestaurantModel"},
+    _user : {type : mongoose.Schema.Types.ObjectId, ref : "UserModel"},
     total : Number,
     reviews :
         [{text :String, url:String, rating: Number, time_created:String,

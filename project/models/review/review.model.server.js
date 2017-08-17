@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var reviewSchema = require("../review/review.schema.server");
 var reviewModel = mongoose.model("ReviewModel", reviewSchema);
 var restaurantModel = require("../restaurant/restaurant.model.server");
+var userModel = require("../user/user.model.server");
 
 reviewModel.findAllReviewsForRestaurant = findAllReviewsForRestaurant;
 reviewModel.findReviewById = findReviewById;
@@ -31,10 +32,12 @@ function addWidget(pageId,widgetId){
         })
 }*/
 
-function findAllReviewsForRestaurant(restaurantId){
+function findAllReviewsForRestaurant(userId, restaurantId){
     return reviewModel
             .find({_restaurant : restaurantId})
             .populate('restaurant', 'name')
+            .find({_user : userId})
+            .populate('user', 'username')
             .exec();
 }
 
@@ -42,14 +45,20 @@ function findReviewById(reviewId){
     return reviewModel.findById({_id : reviewId});
 }
 
-function createReview(restaurantId, review){
+function createReview(userId, restaurantId, review){
     review._restaurant = restaurantId;
+    review._user = userId;
     var reviewtmp = null;
     return reviewModel
         .create(review)
         .then(function (reviewDoc){
             reviewtmp = reviewDoc;
-            return restaurantModel.addReview(userId, reviewDoc._id)
+            restaurantModel
+                .addReview(restaurantId, reviewDoc._id)
+                .then(function (response){
+                    return userModel
+                            .addReview(userId,reviewDoc._id)
+                })
         }, function(error){
             return res.json({error:error.message});
         }).catch(function () {
@@ -64,10 +73,15 @@ function updateReview(reviewId, review){
     return reviewModel.update({_id : reviewId}, {$set : review});
 }
 
-function deleteReview(restaurantId, reviewId){
+function deleteReview(userId, restaurantId, reviewId){
     return reviewModel
         .remove({_id : reviewId})
         .then(function (status){
-            return restaurantModel.removeReview(restaurantId, reviewId);
+            restaurantModel
+                .removeReview(restaurantId, reviewId)
+                .then(function (response){
+                    return userModel
+                        .removeReview(userId, reviewId)
+                })
         });
 }

@@ -22,11 +22,13 @@
                     <div class="form-group ">
                         <input type="text" class="form-control rak-search-bar" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit"
+                            class="btn btn-danger rak-submit-button"
+                            ng-click="model.searchRestaurantByTitle(searchInput)">Submit</button>
                 </form>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <!--<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
             </ul>
         </div>
     </div>
@@ -52,25 +54,44 @@
                 <span class="rak-price">
                         {{model.restaurant.price}}
                 </span>
-                <span class="rak-price">
-                        {{model.restaurant.is_closed}}
+                <span class="rak-price rak-true-false">
+                        {{model.restaurant.is_closed == true ? 'Is Closed Now': 'Is Open Now'}}
                 </span>
             </div>
             <div>
-                <span class="float-left">
-                        {{model.restaurant.categories[0]}}
+                <span class="float-left rak-price rak-true-false">
+                        Category : {{model.restaurant.categories[0].title}}
                 </span>
             </div>
-            {{model.restaurant}}
+            <div>
+                <label class="rak-price">Address</label>
+                <span class="float-left review-count rating-qualifier">
+                        {{model.restaurant.location.display_address[0]}}
+                </span>
+                <span class="float-left review-count rating-qualifier">
+                        {{model.restaurant.location.display_address[1]}}
+                </span>
+            </div>
+            <label class="rak-price">Phone Number</label>
+            <div>
+                <span class="review-count rating-qualifier">
+                        {{model.restaurant.display_phone}}
+                </span>
+            </div>
+            <div>
+                <span class="float-left review-count rating-qualifier">
+                        {{model.restaurant.hours[0].open[0].is_overnight == true ? 'Open All Night': 'Not Open Overnight'}}
+                </span>
+            </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
             <div>
-                <span>
                     <button
                             class="btn btn-danger"
                             ng-click = "model.createRestaurant(model.userId, model.restaurant)"
                             name="Favourite"
-                            id="Favourite">
+                            id="Favourite"
+                            ng-hide="model.isOwner()">
                         Favourite<span class="glyphicon glyphicon-heart rak-heart-color" aria-hidden="true"></span>
                     </button>
                     <button
@@ -85,24 +106,39 @@
                                                 ng-click = "model.getAllReviews(model.resId)">
                         Reviews<span class="glyphicon glyphicon-list rak-star-color" aria-hidden="true"></span>
                     </button>
-                </span>
+                <button
+                        class="btn btn-danger"
+                        ng-click = "model.deleteRestaurant(model.userId, model.restaurant._id)"
+                        name="deleteRestaurant"
+                        id="deleteRestaurant"
+                        ng-hide="model.isCustomer()">
+                    Delete<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <button
+                        class="btn btn-danger"
+                        ng-click = "model.updateRestaurant(model.restaurant)"
+                        name="updateRestaurant"
+                        id="updateRestaurant"
+                        ng-hide="model.isCustomer()">
+                    Update<span class="glyphicon glyphicon-pencil rak-edit-color" aria-hidden="true"></span>
+                </button>
             </div>
-            <div>
+           <!-- <div>
                 <span >
                     <button
-                            class="btn btn-default btn-lg btn-block rak-details-page-button"
+                            class="btn btn-danger rak-delete-button"
                             ng-click = "model.deleteRestaurant(model.userId, model.restaurant._id)"
                             name="deleteRestaurant"
                             id="deleteRestaurant"
                             ng-hide="model.isCustomer()">
-                        Delete<span class="glyphicon glyphicon-remove rak-remove-color" aria-hidden="true"></span>
+                        Delete<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                     </span>
             </div>
             <div>
                 <span >
                     <button
-                            class="btn btn-default btn-lg btn-block rak-details-page-button"
+                            class="btn btn-danger rak-update-button"
                             ng-click = "model.updateRestaurant(model.restaurant)"
                             name="updateRestaurant"
                             id="updateRestaurant"
@@ -110,43 +146,30 @@
                         Update<span class="glyphicon glyphicon-pencil rak-edit-color" aria-hidden="true"></span>
                     </button>
                     </span>
-            </div>
+            </div>-->
         </div>
-        <div class="col-sm-4">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="col-sm-8">
+            <div id="myCarousel" class="carousel slide ArtistPic" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
                     <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
+                <div class="carousel-inner" role="listbox" style="height: 400px">
 
                     <div class="item active">
-                        <img src="{{model.restaurant.photos[0]}}" alt="Chania" width="460" height="345">
-                        <div class="carousel-caption">
-                            <h3>Chania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>
+                        <img src="{{model.restaurant.photos[0]}}" alt="Chania" width="460" height="600">
                     </div>
 
                     <div class="item">
-                        <img src="{{model.restaurant.photos[1]}}" alt="Chania" width="460" height="345">
-                        <div class="carousel-caption">
-                            <h3>Chania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>
+                        <img src="{{model.restaurant.photos[1]}}" alt="Chania" width="460" height="600">
                     </div>
 
                     <div class="item">
-                        <img src="{{model.restaurant.photos[2]}}" alt="Flower" width="460" height="345">
-                        <div class="carousel-caption">
-                            <h3>Flowers</h3>
-                            <p>Beautiful flowers in Kolymbari, Crete.</p>
-                        </div>
+                        <img src="{{model.restaurant.photos[2]}}" alt="Flower" width="460" height="600">
                     </div>
 
                 </div>
@@ -166,72 +189,36 @@
     <hr>
 </div>
 
-<div class="container text-center">
-    <h3>What We Do</h3>
-    <br>
-    <div class="row">
-        <div class="col-sm-3">
+<div class="container-fluid text-center">
+    <H1 class="rak-price rak-true-false"><B>Customer Reviews</B></H1>
+    <div class="col">
+        <!--<li class="list-group-item">-->
+<!--            <div ng-repeat = "review in model.reviews" class="col-sm-4">
+                <div class="container">
+                    {{review.text}}
+                </div>
+            </div>-->
+        <!--</li>-->
+        <div class="row-sm-4">
+            <div class="container review-count rak-price">
+                {{model.reviews[0].text}}
+            </div>
+        </div>
+        <div class="row-sm-4 review-count rak-price">
             <div class="container">
+                {{model.reviews[1].text}}
             </div>
         </div>
-        <div class="col-sm-3">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Project 2</p>
-        </div>
-        <div class="col-sm-3">
-            <div class="well">
-                <p>Some text..</p>
-            </div>
-            <div class="well">
-                <p>Some text..</p>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="well">
-                <p>Some text..</p>
-            </div>
-            <div>
-                <p>Some text..</p>
+        <div class="row-sm-4 review-count rak-price">
+            <div class="container">
+                {{model.reviews[2].text}}
             </div>
         </div>
     </div>
-    <hr>
-</div>
 
-<div class="container text-center">
-    <h3>Our Partners</h3>
-    <br>
-    <div class="row">
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Partner 1</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Partner 2</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Partner 3</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Partner 4</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Partner 5</p>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-            <p>Partner 6</p>
-        </div>
-    </div>
-</div><br>
-
-<footer class="container-fluid text-center">
+<!--<footer class="container-fluid text-center">
     <p>Footer Text</p>
-</footer>
+</footer>-->
 
 </div>
 <!--</html>-->

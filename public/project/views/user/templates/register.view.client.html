@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid rak-register-body">
 
     <h2>Register</h2>
 
@@ -21,13 +21,29 @@
            id="password"
            ng-model = "model.user.password"/>
 
-    <label for="confirm-password">Confirm Password</label>
-    <input name="confirm-password"
+    <label for="password">Confirm Password</label>
+    <input name="password"
            class="form-control"
            type="password"
            placeholder="david123"
-           id="confirm-password"
+           id="password2"
            ng-model = "model.user.password2"/>
+
+    <label for="email">Email</label>
+    <input name="email"
+           class="form-control"
+           type="email"
+           placeholder="rock@gmail.com"
+           id="email"
+           ng-model = "model.user.email"/>
+
+    <label for="phone">Phone</label>
+    <input name="phone"
+           class="form-control"
+           type="string"
+           placeholder="8572503314"
+           id="phone"
+           ng-model = "model.user.phone"/>
 
     <input
             type="radio"
@@ -43,6 +59,14 @@
             value="OWNER"
             ng-model = "model.user.roles"/>
     <label for="Owner">Owner</label>
+
+    <input
+            type="radio"
+            name="admin"
+            id="admin"
+            value="ADMIN"
+            ng-model = "model.user.roles"/>
+    <label for="Owner">Admin</label>
 
     <a class="btn btn-default btn-block btn-primary"
        ng-click = "model.registerUser(model.user)"

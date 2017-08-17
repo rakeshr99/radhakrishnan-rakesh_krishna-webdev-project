@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Owners List</title>
-</head>
-<body>
+<nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <a href="#!/">
+        <span class="glyphicon glyphicon-chevron-left
+        white pull-left glyphicon-chevron-position"></span>
+        </a>
+        <div>
+            <a class="navbar-brand" href="">Reviews</a>
+        </div>
+        <!--</div>-->
+
+    </div><!-- /.container-fluid -->
+</nav>
+<div>
 <ul class="list-group">
     <div ng-repeat = "review in model.reviews" class="wd-widget">
         <li class="list-group-item">
@@ -25,7 +33,14 @@
     </div>
     <div ng-repeat = "local in model.localReview">
         <!--<a href="">{{review.text}}</a>-->
-        <a href="">{{local.text}}</a>
+        <span>
+            <a href="">{{local.text}}</a>
+                            <button
+                                    class="btn btn-danger"
+                                    ng-click = "model.updateReview(model.reviewId)">Update</button>
+                <button class="btn btn-danger"
+                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId)">Delete</button>
+        </span>
     </div>
 <!--    <div ng-repeat = "review in model.localReviews" class="wd-widget">
         <li class="list-group-item">
@@ -40,5 +55,6 @@
             </div>
     </div>-->
 </ul>
-</body>
-</html>
+</div>
+    <div ng-include="'views/footerCommon.view.client.html'"></div>
+</div>

@@ -1,23 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Owners List</title>
-</head>
-<body>
-<ul class="list-group">
-<div ng-repeat = "owner in model.ownersList" class="wd-widget">
-    <li class="list-group-item" ng-repeat = "owner in model.ownersList">
-        <div>
-            <a href="#!/owner">{{owner.username}}</a>
-            <button
-                    type="button"
-                    class="btn btn-default btn-sm pull-right rak-follow-button-padding"
-                    ng-click = "model.followMe(owner.username)">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Follow Me
-            </button>
-        </div>
+<div>
+    <nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
+        <div class="container-fluid">
+            <a href="#!/">
+            <span
+                    class="glyphicon glyphicon-chevron-left white pull-left glyphicon-chevron-position">
+
+            </span>
+            </a>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div>
+                <a class="navbar-brand" white href="">Owners</a>
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div>
+        <ul class="list-group">
+            <div ng-repeat = "owner in model.ownersList" class="wd-widget">
+                <li class="list-group-item">
+                    <div>
+                        <a href="#!/owner">{{owner.username}}</a>
+                        <button
+                                type="button"
+                                class="btn btn-danger btn-sm pull-right rak-owners-list-button"
+                                ng-click = "model.followMe(owner.username)">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Follow Me
+                        </button>
+                    </div>
+            </div>
+        </ul>
+    </div>
+    <div ng-include="'views/footerCommon.view.client.html'"></div>
 </div>
-</ul>
-</body>
-</html>

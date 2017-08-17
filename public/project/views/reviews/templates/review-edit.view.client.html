@@ -8,14 +8,21 @@
             </a>
             <!-- Brand and toggle get grouped for better mobile display -->
             <div>
-                <a class="navbar-brand" white href="">Edit Restaurant</a>
+                <a class="navbar-brand" white href="#!/customer-profile/{{model.userId}}">Edit Restaurant</a>
             </div>
+            <div>
+                <a ng-click = "model.updateUser(model.user)"><span class="glyphicon glyphicon-ok pull-right
+                  navbar-right glyphicon-ok-position white" aria-expanded="true"
+                                                                   aria-hidden="true"></span>
+                </a>
+            </div>
+            <!--</div>-->
 
         </div><!-- /.container-fluid -->
     </nav>
 
 
-<div class="container-fluid rak-body-padding-bottom">
+<div class="container-fluid">
 
     <div ng-show="model.error" class="alert alert-danger">
         {{model.error}}

@@ -79,7 +79,12 @@ function localStrategy(username, password, done){
 
 function login(req, res){
     var user = req.user;
-    res.json(user);
+    if(!user){
+        res.status(401).send({"message": "User not found"});
+        return;
+    }else{
+        res.json(user);
+    }
 }
 
 function getOwnersList(req, res){

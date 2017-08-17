@@ -14,6 +14,24 @@
         //this.createReview = createReview;
         this.searchReviewById = searchReviewById;
         this.getReviewsFromYelp = getReviewsFromYelp;
+        this.deleteReview = deleteReview;
+        this.searchReviewByIdForUpdate = searchReviewByIdForUpdate;
+
+        function searchReviewByIdForUpdate(reviewId){
+            var url = "/api/search-review/"+reviewId;
+            return $http.get(url)
+                .then(function (response){
+                    return response.data;
+                });
+        }
+
+        function deleteReview(userId, restaurantId, reviewId){
+            var url = "/api/delete-review?userId="+userId+"&restaurantId="+restaurantId+"&reviewId="+reviewId;
+            return $http.delete(url)
+                .then(function (response){
+                    return response.data;
+                })
+        }
 
         function getReviewsFromYelp(restaurantId) {
             var url = "/api/yelp-review/" + restaurantId;
@@ -23,18 +41,18 @@
                 });
         }
 
-        function searchReviewById(restaurantId){
-            var url = "/api/yelp/localSearchReview/"+restaurantId;
+        function searchReviewById(userId, restaurantId){
+            var url = "/api/yelp/localSearchReview/"+restaurantId+"/"+userId;
             return $http.get(url)
                 .then(function (response){
                     return response.data;
                 });
         }
 
-        function createReview(restaurantId, review){
+        function createReview(userId, restaurantId, review){
 
             var url = "/api/new-review";
-            return $http.post(url, {restaurantId :restaurantId, review : review})
+            return $http.post(url, {userId: userId, restaurantId :restaurantId, review : review})
                 .then (function (response){
                     return response.data;
                 });

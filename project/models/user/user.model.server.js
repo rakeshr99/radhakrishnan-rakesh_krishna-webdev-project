@@ -16,8 +16,28 @@ userModel.updateFollowing = updateFollowing;
 userModel.updateFollowed = updateFollowed;
 userModel.addRestaurant = addRestaurant;
 userModel.removeRestaurant = removeRestaurant;
+userModel.addReview = addReview;
+userModel.removeReview = removeReview;
 
 module.exports = userModel;
+
+function removeReview(userId, reviewId){
+    return userModel
+        .findById(userId)
+        .then(function (user){
+            var index = user.reviews.indexOf(reviewId);
+            user.reviews.splice(index, 1);
+            return user.save();
+        })
+}
+
+function addReview(userId,reviewId){
+    return userModel.findUserById(userId)
+        .then(function (user){
+            user.reviews.push(reviewId);
+            user.save();
+        })
+}
 
 function removeRestaurant(userId, restaurantId){
     return userModel
@@ -80,7 +100,12 @@ function createUser(user){
 function findUserById(userId){
     return userModel
         .findById(userId)
-        .populate("restaurants", "name");
+        .populate("restaurants reviews")
+        .exec(function (err, results) {
+            // callback
+        });
+        //.populate("reviews", "total")
+
 }
 
 function findAllUser(){
