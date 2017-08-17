@@ -4,11 +4,12 @@
         <a href="#!/">
             <span
                     class="glyphicon glyphicon-chevron-left white pull-left glyphicon-chevron-position">
+
             </span>
         </a>
         <!-- Brand and toggle get grouped for better mobile display -->
         <div>
-            <a class="navbar-brand" white href="">Customer Profile</a>
+            <a class="navbar-brand" white href="">Admin Profile</a>
         </div>
 
     </div><!-- /.container-fluid -->
@@ -17,9 +18,10 @@
 
     <button
             type="button"
-            class="btn btn-danger btn-sm pull-right rak-follow-button-padding"
-            ng-click = "model.getOwnersList()">
-        Restaurant Owners
+            class="btn btn-danger pull-right rak-follow-button-padding"
+            ng-click = "model.createRestaurant()"
+            ng-show = "model.role === 'OWNER'">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Create New Restaurant
     </button>
 
     <label for="username" class="rak-username-margin">Username</label>
@@ -55,62 +57,21 @@
            id="lastName"
            ng-model = "model.user.lastName"/>
     <div>
-    <label>Owners You Follow</label>
-    <div ng-repeat="owner in model.following">
-        <li class="list-group-item">
-            <div>
-                <a href="">{{owner}}</a>
-            </div>
-        </li>
+    <label>Customers following you</label>
+    <div ng-repeat="customer in model.followed">
+        <span>{{customer}}   </span>
     </div>
     </div>
+
     <div>
-    <label>Restaurants You Like</label>
+    <label>My Restaurant</label>
     <ul class="list-group">
         <div ng-repeat = "restaurant in model.user.restaurants" class="wd-widget">
             <li class="list-group-item">
-                <div>
-                    <a href="#!/restaurant-details/{{model.user.restaurants[0]._id}}">{{restaurant.name}}</a>
-                </div>
-            </li>
+                <a href="#!/restaurant-details/{{restaurant._id}}">{{restaurant.name}}</a>
         </div>
     </ul>
     </div>
-    <label>Your Reviews</label>
-    <div class="container-fluid">
-    <div class="col">
-        <div class="col-xs-4">
-        <span>
-            <a href="">{{model.text1}}</a>
-        </span>
-    </div>
-    <div class="col-xs-4">
-        <span >
-            <a href="">{{model.text2}}</a>
-        </span>
-    </div>
-    <div class="col-xs-4">
-        <span class="col-xs-3">
-            <a href="">{{model.text3}}</a>
-        </span>
-    </div>
-    </div>
-    </div>
-<!--    <ul class="list-group">
-        <div class="wd-widget" ng-repeat = "review in model.localReview">
-            <span>
-                <li class="list-group-item">
-                <div>
-                    <a href="">{{review.text}}</a>
-                </div>
-            </li>
-            </span>
-        </div>
-    </ul>-->
-
-<!--    <a class="btn btn-default btn-block btn-primary"
-       href="#!/user/{{model.user._id}}/website"
-       role="button">Websites</a>-->
 
     <a class="btn btn-default btn-block btn-danger"
        ng-click="model.logout()"
@@ -118,8 +79,8 @@
 
     <a class="btn btn-default btn-block btn-danger"
        ng-click = "model.unregister(model.user._id)"
-       role="button"
-       ng-show = "model.role === 'ADMIN'">Unregister</a>
+       ng-show = "model.role === 'ADMIN'"
+       role="button">Unregister</a>
 
     <a class="btn btn-default btn-block btn-primary"
        ng-click = "model.updateUser(model.user)"

@@ -11,8 +11,11 @@
             model.customerProfileButton = customerProfileButton;
             model.ownerProfileButton = ownerProfileButton;
             model.logout = logout;
+            model.isAdmin = isAdmin;
 
         function init(){
+            var urlParams = $location.search();
+            model.search = urlParams.searchInput;
 
         }init();
 
@@ -32,6 +35,14 @@
             }
         }
 
+        function isAdmin(){
+            if(loggedUser.roles.indexOf('ADMIN') > -1){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         function searchRestaurantByTitle(restaurantId){
             //alert(title);
 /*            restaurantService
@@ -39,7 +50,8 @@
                 .then(function (response){
                     model.restaurants = response.jsonBody.businesses;
                 })*/
-            $location.url("/list-restaurant/"+restaurantId);
+            //$location.url("/list-restaurant/"+restaurantId);
+            $location.path("/list-restaurant/"+restaurantId).search({searchInput: restaurantId});
 
         }
 

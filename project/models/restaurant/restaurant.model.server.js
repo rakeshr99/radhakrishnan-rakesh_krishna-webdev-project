@@ -68,10 +68,10 @@ function createRestaurant(userId, restaurant){
             });
     }else{
         return restaurantModel
-            .findById({_id : restaurant._id})
-            .then(function (response){
+            .findById({_id : restaurant._id});
+/*            .then(function (response){
                 return userModel.addRestaurant(userId, restaurant._id);
-            })
+            })*/
     }
 
 }

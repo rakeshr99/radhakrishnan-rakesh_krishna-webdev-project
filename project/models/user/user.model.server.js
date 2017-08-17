@@ -94,6 +94,7 @@ function addWebsite(userId,websiteId){
     })
 }
 function createUser(user){
+    user.roles = ["USER"];
     return userModel.create(user);
 }
 

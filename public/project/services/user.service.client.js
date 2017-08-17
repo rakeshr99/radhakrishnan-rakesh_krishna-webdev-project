@@ -20,10 +20,18 @@
             "getOwnersList" : getOwnersList,
             "checkLogin" : checkLogin,
             "followMe" : followMe,
-            "logout" : logout
+            "logout" : logout,
+            "checkAdmin" : checkAdmin
 
         };
         return api;
+
+        function checkAdmin(){
+            return $http.get("/api/checkAdmin")
+                .then(function (response){
+                    return response.data;
+                })
+        }
 
         function logout(){
             var url = "/api/logout";

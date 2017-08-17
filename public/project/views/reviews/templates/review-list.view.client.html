@@ -26,22 +26,45 @@
                 &lt;!&ndash;<a href="">{{local.text}}</a>&ndash;&gt;
             </div>
         </li>-->
-            <div ng-repeat = "local in model.localReview">
-                <!--<a href="">{{review.text}}</a>-->
+<!--            <div ng-repeat = "local in model.localReview">
+                &lt;!&ndash;<a href="">{{review.text}}</a>&ndash;&gt;
                 <a href="">{{local.text}}</a>
-            </div>
+            </div>-->
     </div>
-    <div ng-repeat = "local in model.localReview">
+    <!--<div ng-repeat = "local in model.localReview">-->
         <!--<a href="">{{review.text}}</a>-->
+    <div>
         <span>
-            <a href="">{{local.text}}</a>
-                            <button
+            <a href="">{{model.text1}}</a>
+<!--                            <button
                                     class="btn btn-danger"
-                                    ng-click = "model.updateReview(model.reviewId)">Update</button>
+                                    ng-click = "model.updateReview(model.reviewId)">Update</button>-->
+                <button class="btn btn-danger"
+                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId)"
+                        pull-right>Delete</button>
+        </span>
+    </div>
+    <div>
+        <span>
+            <a href="">{{model.text2}}</a>
+ <!--                           <button
+                                    class="btn btn-danger"
+                                    ng-click = "model.updateReview(model.reviewId)">Update</button>-->
                 <button class="btn btn-danger"
                         ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId)">Delete</button>
         </span>
     </div>
+    <div>
+        <span>
+            <a href="">{{model.text3}}</a>
+<!--                            <button
+                                    class="btn btn-danger"
+                                    ng-click = "model.updateReview(model.reviewId)">Update</button>-->
+                <button class="btn btn-danger"
+                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId)">Delete</button>
+        </span>
+    </div>
+   <!-- </div>-->
 <!--    <div ng-repeat = "review in model.localReviews" class="wd-widget">
         <li class="list-group-item">
             <div>

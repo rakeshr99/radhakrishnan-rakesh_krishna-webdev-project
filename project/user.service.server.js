@@ -25,6 +25,16 @@ app.post("/api/login", passport.authenticate('local'), login);
 app.post("/api/logout", logout);
 app.get("/api/checkLogin",checkLogin);
 app.post("/api/owner/followMe", followMe);
+app.get("/api/checkAdmin",checkAdmin);
+
+function checkAdmin(req, res){
+            if(req.isAuthenticated() && req.user.roles.indexOf('ADMIN') > -1){
+                res.json(req.user);
+    }else{
+        res.send('0');
+    }
+    /*res.send(req.isAuthenticated() ? req.user : '0');*/
+}
 
 function followMe(req, res){
     var user = req.user;

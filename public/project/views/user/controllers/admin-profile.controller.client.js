@@ -1,44 +1,35 @@
 (function (){
     //this below code makes the module read only
     angular.module("WamApp")
-        .controller("customerProfileController", customerProfileController);
+        .controller("adminProfileController", adminProfileController);
 
-    function customerProfileController($routeParams, userService, $location, loggedUser){
-        console.log(loggedUser);
+    function adminProfileController($routeParams, userService, $location, loggedUser){
         var model = this;
         var userId = loggedUser._id;/*$routeParams["userId"];*/
         model.userId = userId;
 
         model.updateUser = updateUser;
         model.unregister = unregister;
-        model.getOwnersList = getOwnersList;
+        model.followMe = followMe;
         model.logout = logout;
+        model.createRestaurant = createRestaurant;
 
         function init() {
-            var userId = loggedUser._id;/*$routeParams["userId"]*/;
+            var userId = loggedUser._id;
             model.userId = userId;
-            model.locals = {};
-            model.localReview = {};
-
+            model.role = loggedUser.roles[0];
             userService.findUserById(userId)
                     .then(function (response){
                         model.user = response.data;
-                        model.following = model.user.following;
-                        model.localReview = model.user.reviews;
-                        model.locals = model.localReview[0];
-                        model.locals2 = model.localReview[1];
-                        model.locals3 = model.localReview[2];
-                        model.text1 = model.locals.reviews[0].text;
-                        model.text2 = model.locals2.reviews[0].text;
-                        model.text3 = model.locals3.reviews[0].text;
-/*                        model.locals = model.user.reviews[0];
-                        model.localReview = model.locals.reviews;*/
-                        //model.reviews = model.user.reviews;
-                        //console.log(model.reviews);
-                });
+                        model.followed = model.user.followed;
+                })
 
         }
         init();
+
+        function createRestaurant(){
+            $location.url('/new-restaurant');
+        }
 
         function logout(){
             userService
@@ -48,8 +39,12 @@
                 })
         }
 
-        function getOwnersList(){
-                    $location.url("/owners");
+        function followMe(){
+            userService
+                .followMe(model.userId)
+                .then(function (response){
+                    response.send(200);
+                })
         }
 
         function updateUser(user){

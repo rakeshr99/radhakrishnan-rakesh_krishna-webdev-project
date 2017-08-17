@@ -49,6 +49,17 @@
                     loggedUser : checkLogin
                 }
             })
+            .when("/admin", {
+                templateUrl : "views/user/templates/admin-profile.view.client.html",
+                resolve: {
+                    loggedUser : checkAdmin
+                }
+/*                controller : "adminProfileController",
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkLogin
+                }*/
+            })
             .when("/new-restaurant", {
                 templateUrl : "views/restaurant/templates/restaurant-new.view.client.html",
                 controller : "newRestaurantController",
@@ -184,7 +195,23 @@
             .then(function (user){
                 if(user === '0'){
                     deferred.reject();
-                    $location.url("/login");
+                    $location.url("/");
+                }else{
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+
+    }
+
+    function checkAdmin(userService, $q, $location){
+        var deferred = $q.defer();
+        userService
+            .checkAdmin()
+            .then(function (user){
+                if(user === '0'){
+                    deferred.reject();
+                    $location.url("/");
                 }else{
                     deferred.resolve(user);
                 }

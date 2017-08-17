@@ -32,11 +32,18 @@
                                 //model.reviews.push(reviewsFromYelp);
                             })
                     }else{
-                        model.locals = model.localReviews[0];
+                        model.localReview = model.localReviews;
+                        model.locals = model.localReview[0];
+                        model.locals2 = model.localReview[1];
+                        model.locals3 = model.localReview[2];
+                        model.text1 = model.locals.reviews[0].text;
+                        model.text2 = model.locals2.reviews[0].text;
+                        model.text3 = model.locals3.reviews[0].text;
+/*                        model.locals = model.localReviews[0];
                         model.localReview = model.locals.reviews;
                         console.log(model.locals._id);
                         model.reviewId = model.locals._id;
-                        return;
+                        return;*/
                     }
                 })
 

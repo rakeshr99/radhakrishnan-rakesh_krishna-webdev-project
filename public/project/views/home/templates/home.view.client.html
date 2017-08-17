@@ -20,7 +20,7 @@
 
                     <!-- General links -->
                     <li class="active"><a href="#section_welcome">Welcome</a></li>
-                    <li><a href="">About Us</a></li>
+                    <li><a ng-show="model.isAdmin()" href="#!/admin">Admin</a></li>
                     <li><a ng-show="!currentUser" href="#!/register">Register with Us</a></li>
                     <li><a ng-show="!currentUser" href="#!/customer-profile" ng-hide="model.ownerProfileButton()">Customer Profile</a></li>
                     <li><a ng-show="!currentUser" href="#!/owner-profile" ng-hide="model.customerProfileButton()">Owner profile</a></li>
