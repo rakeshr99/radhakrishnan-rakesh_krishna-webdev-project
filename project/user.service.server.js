@@ -37,9 +37,9 @@ app.get('/google/callback',
     }));
 
 var googleConfig = {
-    clientID     : "293095415788-c5jrrkho7m3bq1m9i1hr2vs4g0ffp7r7.apps.googleusercontent.com",//process.env.GOOGLE_CLIENT_ID,
-    clientSecret : "nAKr0ETmP0AbXHLO5tdXm4w7",//process.env.GOOGLE_CLIENT_SECRET, //process.env.GOOGLE_CALLBACK_URL
-    callbackURL  : "http://127.0.0.1:3000/google/callback"
+    clientID     : GOOGLE_CLIENT_ID,//process.env.GOOGLE_CLIENT_ID,
+    clientSecret : GOOGLE_CLIENT_SECRET,//process.env.GOOGLE_CLIENT_SECRET, //process.env.GOOGLE_CALLBACK_URL
+    callbackURL  : GOOGLE_CALLBACK_URL
 };
 
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
