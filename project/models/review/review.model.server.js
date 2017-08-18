@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var reviewSchema = require("../review/review.schema.server");
+var reviewSchema = require("project/models/review/review.schema.server");
 var reviewModel = mongoose.model("ReviewModel", reviewSchema);
 var restaurantModel = require("../restaurant/restaurant.model.server");
 var userModel = require("../user/user.model.server");
