@@ -18,8 +18,13 @@ userModel.addRestaurant = addRestaurant;
 userModel.removeRestaurant = removeRestaurant;
 userModel.addReview = addReview;
 userModel.removeReview = removeReview;
+userModel.findUserByGoogleId = findUserByGoogleId;
 
 module.exports = userModel;
+
+function findUserByGoogleId(googleId){
+    return userModel.findOne({'google.id': googleId});
+}
 
 function removeReview(userId, reviewId){
     return userModel

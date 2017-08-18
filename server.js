@@ -27,6 +27,7 @@ app.options('*', cors());
 
 //require("./test/app");
 require("./project/app");
+require("./project/models/user/user.model.server");
 
 var port = process.env.PORT || 3000;
 app.listen(port);

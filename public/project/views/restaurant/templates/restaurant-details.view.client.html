@@ -55,7 +55,9 @@
                         {{model.restaurant.price}}
                 </span>
                 <span class="rak-price rak-true-false">
-                        {{model.restaurant.is_closed == true ? 'Is Closed Now': 'Is Open Now'}}
+                        <!--{{model.restaurant.is_closed == true ? 'Is Closed Now': 'Is Open Now'}}-->
+                    <span ng-if="model.restaurant.is_closed == false">Is Open Now</span>
+                    <span ng-if="model.restaurant.is_closed == true">Is Closed Now</span>
                 </span>
             </div>
             <div>
@@ -80,7 +82,11 @@
             </div>
             <div>
                 <span class="float-left review-count rating-qualifier">
-                        {{model.restaurant.hours[0].open[0].is_overnight == true ? 'Open All Night': 'Not Open Overnight'}}
+                        <!--{{model.restaurant.hours[0].open[0].is_overnight == true ? 'Open All Night': 'Not Open Overnight'}}-->
+                    <span ng-if="model.restaurant.hours[0].open[0].is_overnight == true"
+                          class="rak-price rak-true-false">Open Overnight</span>
+                    <span ng-if="model.restaurant.hours[0].open[0].is_overnight == false"
+                          class="rak-price rak-true-false">Restaurant is not open overnight</span>
                 </span>
             </div>
         </div>

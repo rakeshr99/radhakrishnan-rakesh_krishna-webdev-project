@@ -49,16 +49,23 @@
                     loggedUser : checkLogin
                 }
             })
+            .when("/customer-profile-for-admin/:userId_role", {
+                templateUrl : "views/user/templates/customer-profile-for-admin.view.client.html",
+                controller : "customerProfileForAdminController",
+                controllerAs : "model"
+            })
+            .when("/owner-profile-for-admin/:userId_role", {
+                templateUrl : "views/user/templates/owner-profile-for-admin.view.client.html",
+                controller : "ownerProfileForAdminController",
+                controllerAs : "model"
+            })
             .when("/admin", {
                 templateUrl : "views/user/templates/admin-profile.view.client.html",
+                controller : "adminProfileController",
+                controllerAs : "model",
                 resolve: {
                     loggedUser : checkAdmin
                 }
-/*                controller : "adminProfileController",
-                controllerAs : "model",
-                resolve: {
-                    loggedUser : checkLogin
-                }*/
             })
             .when("/new-restaurant", {
                 templateUrl : "views/restaurant/templates/restaurant-new.view.client.html",
@@ -195,7 +202,7 @@
             .then(function (user){
                 if(user === '0'){
                     deferred.reject();
-                    $location.url("/");
+                    $location.url("/login");
                 }else{
                     deferred.resolve(user);
                 }
@@ -211,7 +218,7 @@
             .then(function (user){
                 if(user === '0'){
                     deferred.reject();
-                    $location.url("/");
+                    $location.url("/login");
                 }else{
                     deferred.resolve(user);
                 }

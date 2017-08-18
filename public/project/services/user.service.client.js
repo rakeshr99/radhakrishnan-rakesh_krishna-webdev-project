@@ -21,7 +21,8 @@
             "checkLogin" : checkLogin,
             "followMe" : followMe,
             "logout" : logout,
-            "checkAdmin" : checkAdmin
+            "checkAdmin" : checkAdmin,
+            "findAllUsers" : findAllUsers
 
         };
         return api;
@@ -91,6 +92,10 @@
 
         function findUserById(userId){
             return $http.get("/api/user/" + userId);
+        }
+
+        function findAllUsers(){
+            return $http.get("/api/all-users/");
         }
 
         function login(username, password){

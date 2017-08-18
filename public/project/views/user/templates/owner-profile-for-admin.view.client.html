@@ -1,0 +1,91 @@
+<div>
+<nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
+    <div class="container-fluid">
+        <a href="#!/">
+            <span
+                    class="glyphicon glyphicon-chevron-left white pull-left glyphicon-chevron-position">
+
+            </span>
+        </a>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div>
+            <a class="navbar-brand" white href="">Owner Profile</a>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid rak-body-padding-bottom">
+
+    <button
+            type="button"
+            class="btn btn-danger pull-right rak-follow-button-padding"
+            ng-click = "model.createRestaurant()"
+            ng-show = "model.role === 'OWNER'">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Create New Restaurant
+    </button>
+
+    <label for="username" class="rak-username-margin">Username</label>
+    <input name="username"
+           type="text"
+           class="form-control"
+           readonly
+           value="david"
+           id="username"
+            ng-model = "model.user.username"/>
+
+    <label for="email">Email</label>
+    <input name="email"
+           class="form-control"
+           placeholder="david@gmail.com"
+           type="email"
+           id="email"
+           ng-model = "model.user.email"/>
+
+    <label for="firstName">First Name</label>
+    <input name="firstName"
+           type="text"
+           class="form-control"
+           placeholder="david"
+           id="firstName"
+           ng-model = "model.user.firstName"/>
+
+    <label for="lastName">Last Name</label>
+    <input name="lastName"
+           type="text"
+           class="form-control"
+           placeholder="coulthard"
+           id="lastName"
+           ng-model = "model.user.lastName"/>
+    <div>
+    <label>Customers following you</label>
+    <div ng-repeat="customer in model.followed">
+        <span>{{customer}}   </span>
+    </div>
+    </div>
+
+    <div>
+    <label>My Restaurant</label>
+    <ul class="list-group">
+        <div ng-repeat = "restaurant in model.user.restaurants" class="wd-widget">
+            <li class="list-group-item">
+                <a href="#!/restaurant-details/{{restaurant._id}}">{{restaurant.name}}</a>
+        </div>
+    </ul>
+    </div>
+
+    <a class="btn btn-default btn-block btn-danger"
+       ng-click="model.logout()"
+       role="button">Logout</a>
+
+    <a class="btn btn-default btn-block btn-danger"
+       ng-click = "model.unregister(model.user._id)"
+       ng-show = "model.role === 'ADMIN'"
+       role="button">Unregister</a>
+
+    <a class="btn btn-default btn-block btn-primary"
+       ng-click = "model.updateUser(model.userId, model.user)"
+       role="button">Update</a>
+</div>
+
+    <div ng-include="'views/footerCommon.view.client.html'"></div>
+</div>

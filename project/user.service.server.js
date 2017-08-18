@@ -2,6 +2,7 @@ var app = require("../express");
 var userModel = require(".//models/user/user.model.server");
 var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -26,6 +27,68 @@ app.post("/api/logout", logout);
 app.get("/api/checkLogin",checkLogin);
 app.post("/api/owner/followMe", followMe);
 app.get("/api/checkAdmin",checkAdmin);
+app.get("/auth/google", passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get("/api/all-users/", findAllusers);
+
+app.get('/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/project/#!/',
+        failureRedirect: '/project/#!/login'
+    }));
+
+var googleConfig = {
+    clientID     : "293095415788-c5jrrkho7m3bq1m9i1hr2vs4g0ffp7r7.apps.googleusercontent.com",//process.env.GOOGLE_CLIENT_ID,
+    clientSecret : "nAKr0ETmP0AbXHLO5tdXm4w7",//process.env.GOOGLE_CLIENT_SECRET, //process.env.GOOGLE_CALLBACK_URL
+    callbackURL  : "http://127.0.0.1:3000/google/callback"
+};
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+function findAllusers(req, res){
+    userModel.findAllUser()
+        .then(function (users){
+            res.json(users);
+        })
+}
+
+function googleStrategy(token, refreshToken, profile, done) {
+    console.log(profile);
+    console.log(1);
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
 function checkAdmin(req, res){
             if(req.isAuthenticated() && req.user.roles.indexOf('ADMIN') > -1){
@@ -81,10 +144,6 @@ function localStrategy(username, password, done){
                     return done(err);
                 }
             });
-
-/*            else{
-                res.send("0");
-            }*/
 }
 
 function login(req, res){

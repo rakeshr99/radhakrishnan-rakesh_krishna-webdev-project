@@ -14,7 +14,11 @@ var userSchema = mongoose.Schema({
     dateCreated : {type :Date, default : Date.now},
     roles: [{type: String, default: "USER", enum:["USER", "ADMIN", "CUSTOMER", "OWNER"]}],
     following: [{type :String}],
-    followed : [{type : String}]
+    followed : [{type : String}],
+    google: {
+        id: String,
+        token: String
+    }
 }, {collection : "user"});
 
 module.exports = userSchema;

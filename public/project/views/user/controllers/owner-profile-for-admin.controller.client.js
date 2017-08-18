@@ -1,40 +1,33 @@
 (function (){
     //this below code makes the module read only
     angular.module("WamApp")
-        .controller("adminProfileController", adminProfileController);
+        .controller("ownerProfileForAdminController", ownerProfileForAdminController);
 
-    function adminProfileController($routeParams, userService, $location, loggedUser){
+    function ownerProfileForAdminController($routeParams, userService, $location){
         var model = this;
-        var userId = loggedUser._id;/*$routeParams["userId"];*/
-        model.userId = userId;
+/*        var userId = loggedUser._id;/!*$routeParams["userId"];*!/
+        model.userId = userId;*/
 
         model.updateUser = updateUser;
         model.unregister = unregister;
         model.followMe = followMe;
         model.logout = logout;
         model.createRestaurant = createRestaurant;
-        model.updateUserByAdmin = updateUserByAdmin;
 
         function init() {
-            var userId = loggedUser._id;
-            model.userId = userId;
-            model.role = loggedUser.roles[0];
-            userService.findAllUsers()
+            var userId_role = $routeParams["userId_role"];
+            var splitparams = userId_role.split("-");
+            model.userId = splitparams[0];
+            model.role = splitparams[1];
+            var userId = model.userId;
+
+            userService.findUserById(model.userId)
                 .then(function (response){
-                    model.users = response.data;
-                })
+                    model.user = response.data;
+                });
 
         }
         init();
-
-        function updateUserByAdmin(userId, userRole){
-            var userId_role = userId+"-"+userRole;
-            if(userRole === "OWNER"){
-                $location.url('/owner-profile-for-admin/'+userId_role);
-            }else if(userRole === "CUSTOMER"){
-                $location.url('/customer-profile-for-admin/'+userId_role);
-            }
-        }
 
         function createRestaurant(){
             $location.url('/new-restaurant');
@@ -56,7 +49,7 @@
                 })
         }
 
-        function updateUser(user){
+        function updateUser(userId, user){
             userService.updateUser(userId, user)
                 .then(function (response){
                     _user = response.data;
@@ -71,7 +64,7 @@
         function unregister(userId){
             userService.unregister(userId)
                 .then(function (response){
-                    $location.url("/admin");
+                    $location.url("/login");
                 })
         }
     }
