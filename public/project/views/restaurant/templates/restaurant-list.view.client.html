@@ -1,44 +1,46 @@
 <div>
-<nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <a href="#!/">
+    <nav class="navbar rak-navbar-color navbar-fixed-top nav-collapse collapsing">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a href="#!/">
         <span class="glyphicon glyphicon-chevron-left
         white pull-left glyphicon-chevron-position"></span>
-        </a>
-        <div>
-            <a class="navbar-brand" href="">Restaurants List</a>
-        </div>
-        <!--</div>-->
+            </a>
+            <div>
+                <a class="navbar-brand" href="">Restaurants List</a>
+            </div>
+            <!--</div>-->
 
-    </div><!-- /.container-fluid -->
-</nav>
-<div class="container-fluid rak-body-padding-bottom">
-    <ul class="list-group">
-        <li class="list-group-item">
-            <div ng-repeat = "restaurant in model.restaurants" class="row">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <a href="" ng-click="model.getRestaurantDetails(restaurant.id)"><div class="col-xs-4 rak-res-name-list-screen">
-                                {{restaurant.name}}</div></a>
-                        </div>
-                        <div class="col-sm-4 review-count-list rating-qualifier">
-                            <span class="">Rating : {{restaurant.rating}}  Stars       </span>
-                            <span class="pull-right">                     Reviews : {{restaurant.review_count}}</span>
-                        </div>
-                        <div class="col-sm-4">
-                            <a href="" class="pull-right">
-                                <img src="{{restaurant.image_url}}" height="100px"/>
-                            </a>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container-fluid rak-body-padding-bottom">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div ng-repeat = "restaurant in model.restaurants" class="abcd">
+                    <div class="container">
+                        <div class="abcd">
+                            <div class="col-xs-6 col-lg-3">
+                                <a class="rak-res-name-list-screen" href="" ng-click="model.getRestaurantDetails(restaurant.id)">
+                                    {{restaurant.name}}</a>
+                            </div>
+                            <div class="col-xs-3 hidden-xs review-count-list rating-qualifier">
+                                <span class="">Rating : {{restaurant.rating}}  Stars       </span>
+                            </div>
+                            <div class="col-xs-3 hidden-xs review-count-list rating-qualifier">
+                                <span class="pull-right">Reviews : {{restaurant.review_count}}</span>
+                            </div>
+                            <div class="col-xs-6 col-lg-3">
+                                <a href="" class="pull-right">
+                                    <img src="{{restaurant.image_url}}" class="rak-res-image"/>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </li>
-    </ul>
+            </li>
+        </ul>
 
-</div>
+    </div>
 
     <div ng-include="'views/footerCommon.view.client.html'"></div>
 </div>
