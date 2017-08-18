@@ -12,10 +12,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#!/owner-profile" ng-hide="model.isCustomer()">My Profile</a></li>
-                <li><a href="#!/customer-profile" ng-hide="model.isOwner()">My Profile</a></li>
+                <li><a href="#!/owner-profile" ng-show="model.currentUser.roles[0] ==='OWNER'">My Profile</a></li>
+                <li><a href="#!/customer-profile" ng-show="model.currentUser.roles[0] ==='CUSTOMER'">My Profile</a></li>
             </ul>
             <ul>
                 <form class="navbar-form navbar-left">
@@ -117,7 +115,7 @@
                         ng-click = "model.deleteRestaurant(model.userId, model.restaurant._id)"
                         name="deleteRestaurant"
                         id="deleteRestaurant"
-                        ng-hide="model.isCustomer()">
+                        ng-show="model.currentUser.roles[0] === 'ADMIN'">
                     Delete<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
                 <button
@@ -125,7 +123,7 @@
                         ng-click = "model.updateRestaurant(model.restaurant)"
                         name="updateRestaurant"
                         id="updateRestaurant"
-                        ng-hide="model.isCustomer()">
+                        ng-show="model.currentUser.roles[0] === 'ADMIN'">
                     Update<span class="glyphicon glyphicon-pencil rak-edit-color" aria-hidden="true"></span>
                 </button>
             </div>

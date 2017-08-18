@@ -12,6 +12,7 @@
             model.ownerProfileButton = ownerProfileButton;
             model.logout = logout;
             model.isAdmin = isAdmin;
+            model.currentUser = loggedUser;
 
         function init(){
             var urlParams = $location.search();

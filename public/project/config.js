@@ -13,21 +13,20 @@
         $httpProvider.defaults.headers.post['Access-Control-Max-Age'] = '1728000';
         $routeProvider
             .when("/", {
-                templateUrl:"views/home/templates/home.view.client.html",
-                controller : "homeController",
-                controllerAs : "model",
+                templateUrl: "views/home/templates/home.view.client.html",
+                controller: "homeController",
+                controllerAs: "model",
                 resolve: {
-                    loggedUser : checkLogin
-                }})
-/*            .when("/restaurant/:yelpId", {
-                templateUrl: "views/restaurant/templates/restaurant-details.view.client.html",
-                controller: "restaurantDetailsController",
-                controllerAs: "model"
-            })*/
+                    loggedUser : checkAnonymous
+                }
+            })
             .when("/login", {
                 templateUrl:"views/user/templates/login.view.client.html",
                 controller : "loginController",
-                controllerAs : "model"})
+                controllerAs : "model",
+                resolve: {
+                    loggedUser : checkAnonymous
+                }})
             .when("/register", {
                 templateUrl : "views/user/templates/register.view.client.html",
                 controller : "registerController",
@@ -80,7 +79,7 @@
                 controller : "restaurantListController",
                 controllerAs : "model",
                 resolve: {
-                    loggedUser : checkLogin
+                    loggedUser : checkAnonymous
                 }
             })
             .when("/restaurant-details/:restaurantId", {
@@ -88,7 +87,7 @@
                 controller : "restaurantDetailsController",
                 controllerAs : "model",
                 resolve: {
-                    loggedUser : checkLogin
+                    loggedUser : checkAnonymous
                 }
             })
             .when("/update-restaurant/:restaurantId", {
@@ -200,7 +199,7 @@
         userService
             .checkLogin()
             .then(function (user){
-                if(user === '0'){
+                if(!user){
                     deferred.reject();
                     $location.url("/login");
                 }else{
@@ -211,12 +210,23 @@
 
     }
 
+    function checkAnonymous(userService, $q){
+        var deferred = $q.defer();
+        userService
+            .checkLogin()
+            .then(function (user){
+                    deferred.resolve(user);
+            });
+        return deferred.promise;
+
+    }
+
     function checkAdmin(userService, $q, $location){
         var deferred = $q.defer();
         userService
             .checkAdmin()
             .then(function (user){
-                if(user === '0'){
+                if(!user){
                     deferred.reject();
                     $location.url("/login");
                 }else{

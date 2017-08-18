@@ -3,7 +3,7 @@
     angular.module("WamApp")
             .controller("loginController", loginController);
 
-    function loginController($location, userService, $rootScope){
+    function loginController($location, userService, $rootScope, loggedUser){
 
         var model = this;
         model.login = login;
@@ -22,6 +22,7 @@
                             user = response.data;
                             if(user){
                                 $rootScope.currentUser = user;
+                                //model.currentUser = loggedUser;
                                 if(user.roles[0] === "CUSTOMER") {
                                     $location.url("/");
                                 }else {

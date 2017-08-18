@@ -29,6 +29,7 @@ app.post("/api/owner/followMe", followMe);
 app.get("/api/checkAdmin",checkAdmin);
 app.get("/auth/google", passport.authenticate('google', { scope : ['profile', 'email'] }));
 app.get("/api/all-users/", findAllusers);
+app.get("/logout", destroyedLogout);
 
 app.get('/google/callback',
     passport.authenticate('google', {
@@ -51,6 +52,11 @@ function findAllusers(req, res){
         })
 }
 
+function destroyedLogout(req, res){
+        req.session.destroy(function (err) {
+            res.redirect('/project/index.html#!/');
+        });
+}
 function googleStrategy(token, refreshToken, profile, done) {
     console.log(profile);
     console.log(1);
@@ -123,7 +129,7 @@ function logout(req, res){
 }
 
 function checkLogin(req, res){
-    res.send(req.isAuthenticated() ? req.user : '0');
+    res.send(req.isAuthenticated() ? req.user : undefined);
 }
 
 function localStrategy(username, password, done){

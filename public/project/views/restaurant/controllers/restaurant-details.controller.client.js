@@ -13,6 +13,7 @@
             this.createRestaurantForReview = createRestaurantForReview;
             this.getAllReviews = getAllReviews;
             this.searchRestaurantByTitle = searchRestaurantByTitle;
+            model.currentUser = loggedUser;
 
             function init(){
                 var yelpId = $routeParams.restaurantId;
@@ -81,18 +82,27 @@
             }
 
             function isCustomer(){
-                if(loggedUser.roles[0] == "CUSTOMER"){
-                    return true;
+                if(loggedUser) {
+                    if (loggedUser.roles[0] == "CUSTOMER") {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }else{
-                    return false;
+                    return true;
                 }
+
             }
 
             function isOwner(){
-                if(loggedUser.roles[0] == "OWNER"){
-                    return true;
+                if(loggedUser) {
+                    if (loggedUser.roles[0] == "OWNER") {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }else{
-                    return false;
+                    return true;
                 }
             }
 
