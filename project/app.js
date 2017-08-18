@@ -19,3 +19,4 @@ require("./page.service.server");
 require("./widget.service.server");
 //for project-backup yelp
 require("./restaurant.service.server");
+require("./review.service.server");
