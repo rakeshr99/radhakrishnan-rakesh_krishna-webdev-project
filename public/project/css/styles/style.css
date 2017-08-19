@@ -94,18 +94,24 @@ footer {
     overflow-x: hidden;
 }
 
-#rak-search-screen-center-1{
+#rak-search-screen-center-1 {
     font-size: 100px;
     font-family: 'Vladimir Script', sans-serif;
-    font-weight: 400;
-    color:#000000;
+    font-weight: bold;
+    color: #000000;
+}
+#rak-search-screen-center-2 {
+    font-size: 60px;
+    font-family: 'Vladimir Script', sans-serif;
+    font-weight: 600;
+    color: #000000;
 }
 
-#rak-search-screen-center-2{
-    font-size: 50px;
-    font-family: 'Vladimir Script', sans-serif;
-    font-weight: 400;
-    color:#000000;
+#rak-navbar-brand-style
+{
+    color: coral;
+    font-size: x-large;
+    font-weight: 900;
 }
 
 #rak-search-screen-center-3{
@@ -237,4 +243,10 @@ footer {
 .abcd{
     margin-left: -80px;
     margin-right: -80px;
+}
+
+.rak-navbar-home{
+    color: #f0ad4e;
+    font-weight: 900;
+    font-size: -webkit-xxx-large;
 }

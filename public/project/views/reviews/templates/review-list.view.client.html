@@ -20,16 +20,6 @@
                 <a href="">{{review.text}}</a>
                 <!--<a href="">{{local.text}}</a>-->
             </div></li>
-<!--        <li>
-            <div>
-                <a href="">{{model.localReview.text}}</a>
-                &lt;!&ndash;<a href="">{{local.text}}</a>&ndash;&gt;
-            </div>
-        </li>-->
-<!--            <div ng-repeat = "local in model.localReview">
-                &lt;!&ndash;<a href="">{{review.text}}</a>&ndash;&gt;
-                <a href="">{{local.text}}</a>
-            </div>-->
     </div>
     <!--<div ng-repeat = "local in model.localReview">-->
         <!--<a href="">{{review.text}}</a>-->
@@ -40,7 +30,8 @@
                                     class="btn btn-danger"
                                     ng-click = "model.updateReview(model.reviewId)">Update</button>-->
                 <button class="btn btn-danger"
-                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId)"
+                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId1)"
+                        ng-show="model.currentUser.roles[0] === 'ADMIN'"
                         pull-right>Delete</button>
         </span>
     </div>
@@ -51,7 +42,8 @@
                                     class="btn btn-danger"
                                     ng-click = "model.updateReview(model.reviewId)">Update</button>-->
                 <button class="btn btn-danger"
-                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId)">Delete</button>
+                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId2)"
+                        ng-show="model.currentUser.roles[0] === 'ADMIN'">Delete</button>
         </span>
     </div>
     <div>
@@ -61,7 +53,8 @@
                                     class="btn btn-danger"
                                     ng-click = "model.updateReview(model.reviewId)">Update</button>-->
                 <button class="btn btn-danger"
-                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId)">Delete</button>
+                        ng-click = "model.deleteReview(model.userId,model.restaurantId, model.reviewId3)"
+                        ng-show="model.currentUser.roles[0] === 'ADMIN'">Delete</button>
         </span>
     </div>
    <!-- </div>-->

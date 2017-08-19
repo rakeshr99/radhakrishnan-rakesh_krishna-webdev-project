@@ -16,6 +16,9 @@
             model.locals = {};
             model.localReview = {};
             model.reviewId = 0;
+            var currentUser = loggedUser;/*$routeParams["userId"];*/
+            model.currentUser = currentUser;
+            console.log(model.currentUser.roles[0]);
 
             reviewService
                 .searchReviewById(model.userId, model.restaurantId)
@@ -37,8 +40,11 @@
                         model.locals2 = model.localReview[1];
                         model.locals3 = model.localReview[2];
                         model.text1 = model.locals.reviews[0].text;
-                        model.text2 = model.locals2.reviews[0].text;
-                        model.text3 = model.locals3.reviews[0].text;
+/*                        model.text2 = model.locals2.reviews[0].text;
+                        model.text3 = model.locals3.reviews[0].text;*/
+                        model.reviewId1 = model.locals._id;
+ /*                       model.reviewId2 = model.locals._id;
+                        model.reviewId3 = model.locals._id;*/
 /*                        model.locals = model.localReviews[0];
                         model.localReview = model.locals.reviews;
                         console.log(model.locals._id);
