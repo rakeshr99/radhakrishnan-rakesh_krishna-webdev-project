@@ -31,7 +31,12 @@ app.get("/auth/google", passport.authenticate('google', { scope : ['profile', 'e
 app.get("/api/all-users/", findAllusers);
 app.get("/logout", destroyedLogout);
 
-app.get('/google/callback',
+//for google auth : endpoint
+/* app.get('/auth/google',
+     passport.authenticate('google',
+         { scope : ['profile', 'email'] }));*/
+
+app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/project/#!/',
         failureRedirect: '/project/#!/login'
@@ -42,6 +47,12 @@ var googleConfig = {
     clientSecret : process.env.GOOGLE_CLIENT_SECRET,//process.env.GOOGLE_CLIENT_SECRET, //process.env.GOOGLE_CALLBACK_URL
     callbackURL  : process.env.GOOGLE_CALLBACK_URL
 };
+
+/*var googleConfig = {
+    clientID     : "293095415788-c5jrrkho7m3bq1m9i1hr2vs4g0ffp7r7.apps.googleusercontent.com",//process.env.GOOGLE_CLIENT_ID,
+    clientSecret : "nAKr0ETmP0AbXHLO5tdXm4w7",//process.env.GOOGLE_CLIENT_SECRET, //process.env.GOOGLE_CALLBACK_URL
+    callbackURL  : "http://127.0.0.1:3000/google/callback"
+};*/
 
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
