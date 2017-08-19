@@ -2,7 +2,7 @@ var app = require("../express");
 var userModel = require(".//models/user/user.model.server");
 var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+//var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
@@ -30,11 +30,11 @@ app.get("/api/checkAdmin",checkAdmin);
 app.get("/api/all-users/", findAllusers);
 app.get("/logout", destroyedLogout);
 
-var googleConfig = {
+/*var googleConfig = {
     clientID     : process.env.GOOGLE_CLIENT_ID,//process.env.GOOGLE_CLIENT_ID,
     clientSecret : process.env.GOOGLE_CLIENT_SECRET,//process.env.GOOGLE_CLIENT_SECRET, //process.env.GOOGLE_CALLBACK_URL
     callbackURL  : process.env.GOOGLE_CALLBACK_URL
-};
+};*/
 
 /*var googleConfig = {
  clientID     : "293095415788-c5jrrkho7m3bq1m9i1hr2vs4g0ffp7r7.apps.googleusercontent.com",//process.env.GOOGLE_CLIENT_ID,
@@ -42,14 +42,14 @@ var googleConfig = {
  callbackURL  : "http://127.0.0.1:3000/google/callback"
  };*/
 
-passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+/*passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 app.get("/auth/google", passport.authenticate('google', { scope : ['profile', 'email'] }));
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/project/#!/',
         failureRedirect: '/project/#!/login'
-    }));
+    }));*/
 
 function findAllusers(req, res){
     userModel.findAllUser()
