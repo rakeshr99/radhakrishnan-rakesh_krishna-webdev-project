@@ -196,14 +196,4 @@ function searchRestaurantByTitle(req, res){
                 })
             }
         })
-
-/*    var accessTokenEndpointUrl = "https://api.yelp.com/oauth2/token";
-
-    return http({method: 'POST', url: accessTokenEndpointUrl, headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        "Access-Control-Allow-Origin": "*"},
-        body: {'grant_type':'client_credentials', 'client_id': 'IxPjAaoDsjXWxu7uiGZ_Rw',
-            'client_secret': '7sOmpAgiqReLloF4GSGTs6VGY1ziJc89T1p3VMsIPnPqrTYTp9LHw8a7vkRZauzg'}
-    });*/
-
 }

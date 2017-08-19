@@ -121,12 +121,6 @@
                 .then(function (response){
                     return response.data;
                 });
-            /*                    .then(function (response){
-             accessToken = response.data;
-             });*/
-            //var searchEndpointUrl = "https://api.yelp.com/v3/businesses/search?term="+title+"&location=boston";
-
-            //for yelp
             return;
 
         }

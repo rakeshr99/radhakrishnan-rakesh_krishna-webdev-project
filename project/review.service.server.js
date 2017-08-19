@@ -5,13 +5,6 @@ const http = require('http');
 const yelp = require("../node_modules/yelp-fusion");
 var reviewModel = require("../project/models/review/review.model.server");
 
-/*app.get("/api/yelp/accesstoken", searchRestaurantByTitle);
-app.get("/api/yelp/:yelpId", searchRestaurantByYelpId);
-app.get("/api/list-restaurant", getAllRestaurants);
-app.get("/api/yelp/localSearch/:yelpId", searchRestaurantById);
-app.delete("/api/delete-restaurant", deleteRestaurant);
-app.put("/api/update-restaurant/:restaurantId", updateRestaurant);*/
-
 app.post("/api/new-review", createReview);
 app.get("/api/yelp/localSearchReview/:restaurantId/:userId", searchReviewById);
 app.get("/api/yelp-review/:restaurantId", getReviewsFromYelp);
@@ -301,14 +294,5 @@ function searchRestaurantByTitle(req, res){
                 })
             }
         })
-
-/*    var accessTokenEndpointUrl = "https://api.yelp.com/oauth2/token";
-
-    return http({method: 'POST', url: accessTokenEndpointUrl, headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        "Access-Control-Allow-Origin": "*"},
-        body: {'grant_type':'client_credentials', 'client_id': 'IxPjAaoDsjXWxu7uiGZ_Rw',
-            'client_secret': '7sOmpAgiqReLloF4GSGTs6VGY1ziJc89T1p3VMsIPnPqrTYTp9LHw8a7vkRZauzg'}
-    });*/
 
 }
