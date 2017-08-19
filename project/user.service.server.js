@@ -30,6 +30,63 @@ app.get("/api/checkAdmin",checkAdmin);
 app.get("/api/all-users/", findAllusers);
 app.get("/logout", destroyedLogout);
 
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,//"127136052951-0fjksqo0mt624fevn7l000r8t03k540k.apps.googleusercontent.com",
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,//"fw9DK7mEIOMqfB9ZuzjTSyaF",//
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL//"http://127.0.0.1:3000/auth/google/callback"//
+};
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/assignment/#!/user',
+        failureRedirect: '/assignment/#!/login'
+    }));
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        profile:{
+                            first_name:profile.name.givenName,
+                            last_name:profile.name.familyName
+                        },
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
+
 /*var googleConfig = {
     clientID     : process.env.GOOGLE_CLIENT_ID,//process.env.GOOGLE_CLIENT_ID,
     clientSecret : process.env.GOOGLE_CLIENT_SECRET,//process.env.GOOGLE_CLIENT_SECRET, //process.env.GOOGLE_CALLBACK_URL
