@@ -44,8 +44,8 @@ app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'e
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/assignment/#!/user',
-        failureRedirect: '/assignment/#!/login'
+        successRedirect: '/project/#!/',
+        failureRedirect: '/project/#!/login'
     }));
 
 function googleStrategy(token, refreshToken, profile, done) {
