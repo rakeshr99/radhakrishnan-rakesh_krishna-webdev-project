@@ -135,8 +135,8 @@ function searchRestaurantByTitle(req, res){
     var title = req.query.title;
     var latitude = req.query.latitude;
     var longitude = req.query.longitude;
-    var client_id = "IxPjAaoDsjXWxu7uiGZ_Rw";
-    var client_secret = "7sOmpAgiqReLloF4GSGTs6VGY1ziJc89T1p3VMsIPnPqrTYTp9LHw8a7vkRZauzg";
+    var client_id = "";
+    var client_secret = "";
     var accessToken = null;
     const token = yelp
         .accessToken(client_id, client_secret)
