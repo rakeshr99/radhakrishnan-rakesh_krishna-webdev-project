@@ -100,8 +100,8 @@ function createRestaurant(req, res){
 function searchRestaurantByYelpId(req, res){
     var yelpId = req.params.yelpId;
 
-    var client_id = "IxPjAaoDsjXWxu7uiGZ_Rw";
-    var client_secret = "dd5BmTr33vY5KFH-Dler5eTTIMIDE5SReJ6vmnU8BuJTZAoaAhL4BnFzjGQXBWUHi9TXphXddSVBP-ZT_pd3NHeskoX6fCwUNUAKRfr8mxxa__xZQLQVOer8z6WDWXYx";
+    var client_id = "";
+    var client_secret = "";
     var accessToken = null;
     const token = yelp
         .accessToken(client_id, client_secret)
